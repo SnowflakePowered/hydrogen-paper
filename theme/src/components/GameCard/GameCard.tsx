@@ -45,7 +45,7 @@ const GameCard: React.SFC<GameCardProps & StyleProps> =
     })}
   >
     <Card>
-      <CardMedia className={classes.cardMedia} image={image || 'someimage'}>
+      <CardMedia className={classes.cardMedia} image={image}>
       <GamePlayButtonHover onClick={() => onQuickPlay!({gameGuid: guid})}/>
         <div 
           className={classNames({

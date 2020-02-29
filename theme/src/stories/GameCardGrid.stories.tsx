@@ -1,7 +1,7 @@
 import React from 'react';
 import GameCard from 'components/GameCard/GameCard'
 import GameCardGrid from 'components/GameCardGrid/GameCardGrid'
-import { createStyles, withStyles } from '@material-ui/core';
+import { createStyles, withStyles, WithStyles } from '@material-ui/core';
 
 export default {
     title: 'GameCardGrid',
@@ -14,6 +14,7 @@ const styles = createStyles({
     }
 })
 
+type StyleProps = WithStyles<typeof styles>
 
 const GUID = "00000000-0000-0000-0000-000000000000"
 const PLATFORM_ID = "NINTENDO_NES"
@@ -27,8 +28,7 @@ const landscapeCard = int => (<GameCard
 const landscapeGameList = [...Array(1000)].map((x, i) => landscapeCard(i + 1))
 
 
-const LandscapeGameGridViewStory =  withStyles(styles)(({ classes }) => {
-
+const LandscapeGameGridViewStory = withStyles(styles)(({ classes }) => {
     return (
         <div className={classes.container}>
             <GameCardGrid landscape>
@@ -76,28 +76,6 @@ const SquareGameGridViewStory =  withStyles(styles)(({ classes }) => {
         </div>)
 })
 
-const PortraitGameGridViewStoryHeader = withStyles(styles)(({ classes }) => {
-    return (
-        <div className={classes.container}>
-            <GameCardGrid header={
-                <div>
-                    Hello World!
-        </div>
-            }>
-                {
-                    portraitGameList
-                }
-            </GameCardGrid>
-        </div>)
-})
-
 export const PortraitGrid = () => <PortraitGameGridViewStory/>
 export const LandscrapeGrid = () => <LandscapeGameGridViewStory />
 export const SquareGrid = () => <SquareGameGridViewStory />
-export const PortraitGridWithHeader = () => <PortraitGameGridViewStoryHeader />
-
-// storiesOf('Game Card Grid', module)
-// .add('portrait grid', () => <PortraitGameGridViewStory />)
-// .add('landscape grid', () => <LandscapeGameGridViewStory />)
-// .add('square grid', () => <SquareGameGridViewStory />)
-// .add('portrait grid with header', () => <)

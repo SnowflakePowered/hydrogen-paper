@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { dimensions } from 'components/GameCard/GameCard.style'
 import { styles, StyleProps } from './GameCardGrid.style'
 import { CellMeasurerCache, CellMeasurer, AutoSizer, Grid, ColumnSizer } from 'react-virtualized'
@@ -35,22 +35,7 @@ const getDimensions = (portrait, landscape, square) => {
     BOX_WIDTH: dimensionObject.width + padding }
 }
 
-class GameCardGrid extends React.PureComponent<GameCardGridProps & StyleProps, GameCardGridState> {
-  constructor (props: GameCardGridProps & StyleProps) {
-    super(props)
-    this.state = {
-      heightCache: new CellMeasurerCache({
-        defaultWidth: 100,
-        fixedHeight: false,
-        minWidth: 100,
-        defaultHeight: 250,
-        minHeight: 250,
-        fixedWidth: true
-      })
-    }
-  }
-
-  cellRenderer = ({ className, children, numberOfRows, numberOfColumns, cache }: {
+const cellRenderer = ({ className, children, numberOfRows, numberOfColumns, cache }: {
     className: string,
     children: React.ReactNodeArray
     numberOfRows: number,
@@ -81,54 +66,63 @@ class GameCardGrid extends React.PureComponent<GameCardGridProps & StyleProps, G
     )
   }
 
-  render () {
-    const { BOX_WIDTH } = getDimensions(this.props.portrait, this.props.landscape, this.props.square)
-    const children = React.Children.toArray(this.props.children)
-    return (
-      <div className={this.props.classes.container}>
-        <div className={this.props.classes.autoSizerContainer}>
-          <AutoSizer>
-          {({ height, width }) => {
-              const numberOfColumns = Math.floor(width / BOX_WIDTH)
-              const numberOfRows = Math.ceil(children.length / numberOfColumns)
-              const cellRender = this.cellRenderer({
-                                        className: this.props.classes.cellWrapper,
-                                        children: children,
-                                        numberOfRows,
-                                        numberOfColumns,
-                                        cache: this.state.heightCache
-                                      })
-              const CENTERED_BOX_WIDTH = BOX_WIDTH + (BOX_WIDTH / numberOfColumns / 2) - padding
-              return (
-                <ColumnSizer
-                  columnMaxWidth={CENTERED_BOX_WIDTH}
-                  columnMinWidth={BOX_WIDTH}
-                  columnCount={numberOfColumns}
-                  width={width}
-                >
-                {({ adjustedWidth, getColumnWidth, registerChild }) => (
-                  <Grid
-                    className={this.props.classes.gridContainer}
-                    height={height}
-                    width={width}
-                    ref={registerChild}
-                    // hack to improve performance.
-                    overscanByPixels={4000}
-                    columnWidth={getColumnWidth}
-                    deferredMeasurementCache={this.state.heightCache}
-                    cellRenderer={cellRender}
+const GameCardGrid : React.FunctionComponent<GameCardGridProps & StyleProps> =
+    ({ portrait, landscape, square, children, classes }) => {
+      const [ heightCache, ] = useState(new CellMeasurerCache({
+        defaultWidth: 100,
+        fixedHeight: false,
+        minWidth: 100,
+        defaultHeight: 250,
+        minHeight: 250,
+        fixedWidth: true
+      }))
+
+      const { BOX_WIDTH } = getDimensions(portrait, landscape, square)
+      const _children = React.Children.toArray(children)
+      return (
+        <div className={classes.container}>
+          <div className={classes.autoSizerContainer}>
+            <AutoSizer>
+            {({ height, width }) => {
+                const numberOfColumns = Math.floor(width / BOX_WIDTH)
+                const numberOfRows = Math.ceil(_children.length / numberOfColumns)
+                const cellRender = cellRenderer({
+                                          className: classes.cellWrapper,
+                                          children: _children,
+                                          numberOfRows,
+                                          numberOfColumns,
+                                          cache: heightCache
+                                        })
+                const CENTERED_BOX_WIDTH = BOX_WIDTH + (BOX_WIDTH / numberOfColumns / 2) - padding
+                return (
+                  <ColumnSizer
+                    columnMaxWidth={CENTERED_BOX_WIDTH}
+                    columnMinWidth={BOX_WIDTH}
                     columnCount={numberOfColumns}
-                    rowCount={numberOfRows}
-                    rowHeight={this.state.heightCache.rowHeight}
-                    overscanRowCount={2}
-                  />)}
-                </ColumnSizer>
-            )}}
-        </AutoSizer>
+                    width={width}
+                  >
+                  {({ adjustedWidth, getColumnWidth, registerChild }) => (
+                    <Grid
+                      className={classes.gridContainer}
+                      height={height}
+                      width={width}
+                      ref={registerChild}
+                      // hack to improve performance.
+                      overscanByPixels={4000}
+                      columnWidth={getColumnWidth}
+                      deferredMeasurementCache={heightCache}
+                      cellRenderer={cellRender}
+                      columnCount={numberOfColumns}
+                      rowCount={numberOfRows}
+                      rowHeight={heightCache.rowHeight}
+                      overscanRowCount={2}
+                    />)}
+                  </ColumnSizer>
+              )}}
+          </AutoSizer>
+        </div>
       </div>
-    </div>
-    )
-  }
+      )
 }
 
 export default withStyles(styles)(GameCardGrid)
