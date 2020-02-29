@@ -26,6 +26,7 @@ type GameCardProps = {
   portrait?: boolean,
   landscape?: boolean,
   square?: boolean,
+  noTitle?: boolean,
   guid: string,
   platformID: string,
   onQuickPlay?: (event: QuickPlayEvent) => void
@@ -34,7 +35,7 @@ type GameCardProps = {
 
 const GameCard: React.SFC<GameCardProps & StyleProps> =
  ({ classes, image, title, subtitle, portrait, landscape, square, guid, platformID,
-    onQuickPlay, onTransition }) => (
+    onQuickPlay, onTransition, noTitle }) => (
   <div 
     className={classNames({
       [classes.cardContainer]: true,
@@ -67,18 +68,20 @@ const GameCard: React.SFC<GameCardProps & StyleProps> =
           </div>
         </div>
       </CardMedia>
-      <div 
-        className={classes.cardText}
-        onClick={
-          () => onTransition!({
-            nextView: ViewStates.GameDetailsView, props: {platformID: platformID, guid: guid}
-          })}
-      >
-        <CardContent>
-          <Typography component="h2" className={classes.cardTitle}>{title}</Typography>
-          <Typography component="h3" className={classes.cardSubtitle}>{subtitle}</Typography>
-        </CardContent>
-      </div>
+      { noTitle ? <></> :
+        <div 
+          className={classes.cardText}
+          onClick={
+            () => onTransition!({
+              nextView: ViewStates.GameDetailsView, props: {platformID: platformID, guid: guid}
+            })}
+        >
+          <CardContent>
+            <Typography component="h2" className={classes.cardTitle}>{title}</Typography>
+            <Typography component="h3" className={classes.cardSubtitle}>{subtitle}</Typography>
+          </CardContent>
+        </div>
+       }
     </Card>
   </div>)
 

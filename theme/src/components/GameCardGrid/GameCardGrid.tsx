@@ -73,7 +73,7 @@ const GameCardGrid : React.FunctionComponent<GameCardGridProps & StyleProps> =
         fixedHeight: false,
         minWidth: 100,
         defaultHeight: 250,
-        minHeight: 250,
+        minHeight: 100,
         fixedWidth: true
       }))
 
@@ -108,14 +108,13 @@ const GameCardGrid : React.FunctionComponent<GameCardGridProps & StyleProps> =
                       width={width}
                       ref={registerChild}
                       // hack to improve performance.
-                      overscanByPixels={4000}
                       columnWidth={getColumnWidth}
                       deferredMeasurementCache={heightCache}
                       cellRenderer={cellRender}
                       columnCount={numberOfColumns}
                       rowCount={numberOfRows}
                       rowHeight={heightCache.rowHeight}
-                      overscanRowCount={2}
+                      overscanRowCount={3}
                     />)}
                   </ColumnSizer>
               )}}

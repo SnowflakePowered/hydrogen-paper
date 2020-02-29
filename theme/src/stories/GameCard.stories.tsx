@@ -23,8 +23,18 @@ export const PortraitWithImage = () => <GameCard
     image="http://vignette2.wikia.nocookie.net/mario/images/6/60/SMBBoxart.png/revision/latest?cb=20120609143443"
     title="Lorem Ipsum" subtitle="Dolor Sit Amen" />
 
+
+export const PortraitNoTitle = () => <GameCard
+    guid={GUID}
+    platformID={PLATFORM_ID}
+    noTitle
+    onTransition={action('game-transition')}
+    image="http://vignette2.wikia.nocookie.net/mario/images/6/60/SMBBoxart.png/revision/latest?cb=20120609143443"
+    title="Lorem Ipsum" subtitle="Dolor Sit Amen" />
+
 export const Landscape = () => <GameCard guid={GUID}
     platformID={PLATFORM_ID} landscape title="Lorem Ipsum" subtitle="Dolor Sit Amen" />
+
 export const LandscapeWithImage = () => <GameCard
     guid={GUID}
     platformID={PLATFORM_ID}
@@ -32,11 +42,28 @@ export const LandscapeWithImage = () => <GameCard
     image="http://vignette2.wikia.nocookie.net/mario/images/6/60/SMBBoxart.png/revision/latest?cb=20120609143443"
     landscape title="Lorem Ipsum" subtitle="Dolor Sit Amen" />
 
+export const LandscapeNoTitle = () => <GameCard
+    guid={GUID}
+    noTitle
+    platformID={PLATFORM_ID}
+    onTransition={action('game-transition')}
+    image="http://vignette2.wikia.nocookie.net/mario/images/6/60/SMBBoxart.png/revision/latest?cb=20120609143443"
+    landscape title="Lorem Ipsum" subtitle="Dolor Sit Amen" />
+
 export const Square = () => <GameCard guid={GUID}
     platformID={PLATFORM_ID} onTransition={action('game-transition')} square title="Lorem Ipsum" subtitle="Dolor Sit Amen" />
+
 export const SquareWithImage = () => <GameCard square
     guid={GUID}
     platformID={PLATFORM_ID}
+    onTransition={action('game-transition')}
+    image="http://vignette2.wikia.nocookie.net/mario/images/6/60/SMBBoxart.png/revision/latest?cb=20120609143443"
+    title="Lorem Ipsum" subtitle="Dolor Sit Amen" />
+
+export const SquareNoTitle = () => <GameCard square
+    guid={GUID}
+    platformID={PLATFORM_ID}
+    noTitle
     onTransition={action('game-transition')}
     image="http://vignette2.wikia.nocookie.net/mario/images/6/60/SMBBoxart.png/revision/latest?cb=20120609143443"
     title="Lorem Ipsum" subtitle="Dolor Sit Amen" />

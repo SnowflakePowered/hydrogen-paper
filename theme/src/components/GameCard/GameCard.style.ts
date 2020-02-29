@@ -5,7 +5,7 @@ export type StyleProps = WithStyles<typeof styles>
 
 export const dimensions = {
   portrait: {
-    width: 170,
+    width: 160,
     height: 200
   },
   landscape: {
