@@ -1,5 +1,3 @@
-import * as Immutable from 'immutable'
-
 export interface Platform {
     readonly PlatformID: string
     readonly Metadata: { [key: string]: string }

@@ -33,7 +33,7 @@ type GameCardProps = {
   onTransition?: (event: ViewTransitionEvent<GameDetailsTransitionProps>) => void
 }
 
-const GameCard: React.SFC<GameCardProps & StyleProps> =
+const GameCard: React.FunctionComponent<GameCardProps & StyleProps> =
  ({ classes, image, title, subtitle, portrait, landscape, square, guid, platformID,
     onQuickPlay, onTransition, noTitle }) => (
   <div 
