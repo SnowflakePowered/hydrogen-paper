@@ -19,7 +19,7 @@ type GameDetailsTransitionProps = {
 }
 // todo: z-depth on hover
 // todo: button on hover
-type GameCardProps = {
+type GamePlateProps = {
   image?: string,
   title: string,
   subtitle?: string,
@@ -29,7 +29,7 @@ type GameCardProps = {
   onTransition?: (event: ViewTransitionEvent<GameDetailsTransitionProps>) => void
 }
 
-const GameCard: React.FunctionComponent<GameCardProps & StyleProps> =
+const GamePlate: React.FunctionComponent<GamePlateProps & StyleProps> =
  ({ classes, size, image, title, subtitle }) => (
   <div className={classes.plateContainer} style={{width: size, height: size}}>
     <div className={classes.centeredContainer}>
@@ -53,4 +53,4 @@ const GameCard: React.FunctionComponent<GameCardProps & StyleProps> =
     </div>
   </div>)
 
-export default withStyles(styles)(GameCard)
+export default withStyles(styles)(GamePlate)
