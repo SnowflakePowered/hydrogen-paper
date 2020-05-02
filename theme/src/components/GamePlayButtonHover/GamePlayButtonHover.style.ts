@@ -21,7 +21,7 @@ export const styles = createStyles({
     bottom: 0,
     right: 0,
     marginRight: 10,
-    marginBottom: 10,
+    marginBottom: 12.5,
     opacity: 0,
     userSelect: 'none',
     transition: 'opacity 0.2s ease',

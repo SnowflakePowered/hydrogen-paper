@@ -8,7 +8,7 @@ export const styles = createStyles({
     borderRadius: '50%',
     width: '100%',
     height: '100%',
-    padding: 8,
+    padding: 4,
     display: 'inline-flex',
     justifyContent: 'center',
     boxSizing: 'border-box',
@@ -17,15 +17,15 @@ export const styles = createStyles({
   },
   arrow: {
     color: grey[800],
-    height: 24,
-    width: 24,
+    height: 16,
+    width: 16,
     '$buttonContainer:hover &': {
       color: common.white,
     },
   },
   buttonContainer: {
-    height: 40,
-    width: 40,
+    height: 24,
+    width: 24,
     display: 'block',
     position: 'relative',
     zIndex: 100,
@@ -48,8 +48,8 @@ export const styles = createStyles({
   progress: {
     color: grey[500],
     position: 'absolute',
-    top: -4,
-    left: -4,
+    top: -2,
+    left: -2,
     zIndex: 10
   },
 })

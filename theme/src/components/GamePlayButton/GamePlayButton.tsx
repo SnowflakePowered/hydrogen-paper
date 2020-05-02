@@ -12,7 +12,7 @@ type GamePlayButtonProps = {
 const GamePlayButton: React.SFC<GamePlayButtonProps & StyleProps> = ({classes, onClick, loading}) => (
   <div className={classes.buttonContainer}>
     <div className={classes.pulse}/>
-    {loading ? <CircularProgress size={48} className={classes.progress} /> : ''}
+    {loading ? <CircularProgress size={'28px'} className={classes.progress} /> : ''}
     <IconButton className={classes.button} onClick={onClick}>
       <PlayArrow className={classes.arrow}/>
     </IconButton>
