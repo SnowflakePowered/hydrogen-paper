@@ -11,12 +11,7 @@ import GamePlate from 'components/GamePlate/GamePlate'
 
 type GamePlateGridProps = {
   size: number,
-  header?: React.ReactNode,
   children: React.ReactComponentElement<typeof GamePlate>[]
-}
-
-type GameCardGridState = {
-  scrollElement?: HTMLElement | null,
 }
 
 type ItemDataType = {

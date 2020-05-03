@@ -6,5 +6,14 @@
 
 ::-webkit-scrollbar-thumb {
     border-radius: 8px;
-    background: #c2c9d2;
+    background: #515151;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8a8a8a;
+}
+
+::-webkit-scrollbar-track {
+    background: #cecece;
+    border-radius: 8px;
 }
