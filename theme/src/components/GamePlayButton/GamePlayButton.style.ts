@@ -13,13 +13,13 @@ export const styles = createStyles({
     justifyContent: 'center',
     boxSizing: 'border-box',
     overflow: 'hidden',
-    backgroundColor: common.white
+    backgroundColor: common.white,
   },
   arrow: {
     color: grey[800],
     height: 16,
     width: 16,
-    '$buttonContainer:hover &': {
+    '$button:hover &': {
       color: common.white,
     },
   },
@@ -28,7 +28,7 @@ export const styles = createStyles({
     width: 24,
     display: 'block',
     position: 'relative',
-    zIndex: 100,
+    zIndex: 100
   },
   pulse: {
     '$buttonContainer:hover &': {

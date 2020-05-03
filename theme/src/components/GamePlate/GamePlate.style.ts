@@ -58,6 +58,6 @@ export const styles = createStyles({
     fontSize: 12,
     lineHeight: 1.0,
     color: grey[400],
-    userSelect: 'none',
+    userSelect: 'none'
   }
 })
