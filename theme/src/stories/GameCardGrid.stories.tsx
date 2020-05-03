@@ -2,7 +2,6 @@ import React from 'react';
 import GameCard from 'components/GameCard/GameCard'
 import GameCardGrid from 'components/GameCardGrid/GameCardGrid'
 import { createStyles, withStyles, WithStyles } from '@material-ui/core';
-
 export default {
     title: 'GameCardGrid',
     component: GameCardGrid,
