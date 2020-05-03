@@ -35,7 +35,9 @@ export const styles = createStyles({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    paddingTop: 10,
+    paddingTop: 5,
+    justifyContent: 'center',
+    paddingBottom: 5,
   },
   textContainer: {
     display: 'flex',

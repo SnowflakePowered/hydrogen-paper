@@ -10,10 +10,11 @@ type ImageCardProps = {
   image?: string,
   elevation?: number,
   height: number,
+  width?: number,
   className?: string,
 }
 
-const ImageCard: React.FunctionComponent<ImageCardProps & StyleProps> = ({ classes, image, elevation, height, className }) => (
+const ImageCard: React.FunctionComponent<ImageCardProps & StyleProps> = ({ classes, image, elevation, height, width, className }) => (
   <div className={classes.padding}>
     <div className={classes.root}>
       <div className={classes.paperContainer}>
@@ -23,7 +24,7 @@ const ImageCard: React.FunctionComponent<ImageCardProps & StyleProps> = ({ class
             [className ?? '']: className !== undefined
           })}>
           <div className={classes.imageContainer}>
-          {image ? <img className={classes.image} src={image} style={{maxHeight: height}} alt="ImageCard"/> : <PhotoIcon/>}
+          {image ? <img className={classes.image} src={image} style={{maxHeight: height, maxWidth: width}} alt="ImageCard"/> : <PhotoIcon/>}
           </div>
         </Paper>
       </div>

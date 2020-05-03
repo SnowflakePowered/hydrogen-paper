@@ -10,20 +10,33 @@ type GameDetailsTransitionProps = {
   platformID: string,
   guid: string
 }
+
 // todo: z-depth on hover
 // todo: button on hover
-type GamePlateProps = {
+
+type ShowTitleGamePlateProps = {
   image?: string,
+  showTitle?: true,
   title: string,
   subtitle?: string,
-  portrait?: boolean,
   size: number,
   onCardClick?: (event: React.MouseEvent<{}>) => void
   onCardButtonClick?: (event: React.MouseEvent<{}>) => void
 }
 
-const GamePlate: React.FunctionComponent<GamePlateProps & StyleProps> =
- ({ classes, size, image, title, subtitle, onCardButtonClick, onCardClick }) => {
+
+type NoTitleGamePlateProps = {
+  image?: string,
+  showTitle: false,
+  size: number,
+  title?: never,
+  subtitle?: never,
+  onCardClick?: (event: React.MouseEvent<{}>) => void
+  onCardButtonClick?: (event: React.MouseEvent<{}>) => void
+}
+
+const GamePlate: React.FunctionComponent<(NoTitleGamePlateProps | ShowTitleGamePlateProps) & StyleProps> =
+ ({ classes, size, image, title, subtitle, showTitle, onCardButtonClick, onCardClick }) => {
    const [hover, setHover] = useState(false);
    return (<div className={classes.plateContainer} style={{width: size, height: size}}>
       <div className={classes.centeredContainer}>
@@ -31,21 +44,24 @@ const GamePlate: React.FunctionComponent<GamePlateProps & StyleProps> =
           onMouseOver={() => setHover(true)}
           onMouseOut={() => setHover(false)}>
           <GamePlayButtonHover onButtonClick={onCardButtonClick} onClick={onCardClick}/>
-          <ImageCard elevation={hover ? 4 : 1} className={classes.coverArtImage} image={image} height={size * 0.75}/>
+          <ImageCard elevation={hover ? 4 : 1} className={classes.coverArtImage} image={image} height={size * 0.8} width={size * 0.8}/>
         </div>
-        <div className={classes.textContainer}>
-          <div className={classes.titleText}>
-            <Typography color='textPrimary'
-              className={classes.titleTextContent}>{title}
-            </Typography>
+        { showTitle ?? true ? 
+          <div className={classes.textContainer}>
+            <div className={classes.titleText}>
+              <Typography color='textPrimary'
+                className={classes.titleTextContent}>{title}
+              </Typography>
+            </div>
+            <div className={classes.subtitleText}>
+            <Typography color='textSecondary'
+                variant='caption'
+                className={classes.subtitleTextContent}>{subtitle ?? ''}
+              </Typography>
+            </div>
           </div>
-          <div className={classes.subtitleText}>
-          <Typography color='textSecondary'
-              variant='caption'
-              className={classes.subtitleTextContent}>{subtitle ?? ''}
-            </Typography>
-          </div>
-        </div>
+          : <></>
+        }
       </div>
     </div>)
  }

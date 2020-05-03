@@ -20,21 +20,44 @@ const Portrait = (key) => <GamePlate title="Super Mario Bros."
     size={SIZE}
     key={key}
     image={"http://vignette2.wikia.nocookie.net/mario/images/6/60/SMBBoxart.png/revision/latest?cb=20120609143443"}
-    subtitle="1983"/>
+    subtitle="1983" />
 
-    
+
 const Landscape = (key) => <GamePlate title="Super Mario World"
     size={SIZE}
     key={key}
     image={"https://upload.wikimedia.org/wikipedia/en/thumb/3/32/Super_Mario_World_Coverart.png/220px-Super_Mario_World_Coverart.png"}
-    subtitle="1990"/>
+    subtitle="1990" />
 
-     
+
 const Square = (key) => <GamePlate title="New Super Mario Bros."
     size={SIZE}
     key={key}
     image={"https://upload.wikimedia.org/wikipedia/en/d/db/NewSuperMarioBrothers.jpg"}
-    subtitle="2006"/>
+    subtitle="2006" />
+
+
+const PortraitNoTitle = (key) => <GamePlate
+    showTitle={false}
+    size={SIZE}
+    key={key}
+    image={"http://vignette2.wikia.nocookie.net/mario/images/6/60/SMBBoxart.png/revision/latest?cb=20120609143443"} />
+
+
+const LandscapeNoTitle = (key) => <GamePlate
+    showTitle={false}
+    size={SIZE}
+    key={key}
+    image={"https://upload.wikimedia.org/wikipedia/en/thumb/3/32/Super_Mario_World_Coverart.png/220px-Super_Mario_World_Coverart.png"}
+   />
+
+
+const SquareNoTitle = (key) => <GamePlate 
+    showTitle={false}
+    size={SIZE}
+    key={key}
+    image={"https://upload.wikimedia.org/wikipedia/en/d/db/NewSuperMarioBrothers.jpg"}
+/>
 
 type StyleProps = WithStyles<typeof styles>
 
@@ -46,7 +69,14 @@ const mixedGameList = [...Array(1000)].map((x, i) => {
     return Portrait(i + 1);
 })
 
-const LandscapeGameGridViewStory = withStyles(styles)(({ classes })  => {
+
+const mixedGameNoTitleList = [...Array(1000)].map((x, i) => {
+    if ((i % 3) === 0) return SquareNoTitle(i + 1);
+    if ((i % 2) === 0) return LandscapeNoTitle(i + 1);
+    return PortraitNoTitle(i + 1);
+})
+
+const LandscapeGameGridViewStory = withStyles(styles)(({ classes }) => {
     return (
         <div className={classes.container}>
             <GamePlateGrid size={SIZE}>
@@ -58,7 +88,7 @@ const LandscapeGameGridViewStory = withStyles(styles)(({ classes })  => {
 })
 
 
-const MixedGameGridViewStory = withStyles(styles)(({ classes })  => {
+const MixedGameGridViewStory = withStyles(styles)(({ classes }) => {
     return (
         <div className={classes.container}>
             <GamePlateGrid size={SIZE}>
@@ -69,5 +99,19 @@ const MixedGameGridViewStory = withStyles(styles)(({ classes })  => {
         </div>)
 })
 
+
+
+const MixedGameGridViewNoTitleStory = withStyles(styles)(({ classes }) => {
+    return (
+        <div className={classes.container}>
+            <GamePlateGrid size={SIZE}>
+                {
+                    mixedGameNoTitleList
+                }
+            </GamePlateGrid>
+        </div>)
+})
+
 export const Default = () => <LandscapeGameGridViewStory />
 export const MixedImageSizes = () => <MixedGameGridViewStory />
+export const MixedImageSizesNoTitle = () => <MixedGameGridViewNoTitleStory />
