@@ -35,7 +35,9 @@ type NoTitleGamePlateProps = {
   onCardButtonClick?: (event: React.MouseEvent<{}>) => void
 }
 
-const GamePlate: React.FunctionComponent<(NoTitleGamePlateProps | ShowTitleGamePlateProps) & StyleProps> =
+type GamePlateProps = (NoTitleGamePlateProps | ShowTitleGamePlateProps) & StyleProps
+
+const GamePlate: React.FunctionComponent<GamePlateProps> =
  ({ classes, size, image, title, subtitle, showTitle, onCardButtonClick, onCardClick }) => {
    const [hover, setHover] = useState(false);
    return (<div className={classes.plateContainer} style={{width: size, height: size}}>

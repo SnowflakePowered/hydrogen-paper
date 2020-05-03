@@ -3,12 +3,14 @@ import { dimensions } from 'components/GameCard/GameCard.style'
 import { styles, StyleProps } from './GameCardGrid.style'
 import { CellMeasurerCache, CellMeasurer, AutoSizer, Grid, ColumnSizer } from 'react-virtualized'
 import { withStyles } from '@material-ui/core'
+import GameCard from 'components/GameCard/GameCard'
 
 type GameCardGridProps = {
   portrait?: boolean,
   landscape?: boolean,
   square?: boolean,
   header?: React.ReactNode
+  children: React.ReactComponentElement<typeof GameCard>[]
 }
 
 type GameCardGridState = {
@@ -37,7 +39,7 @@ const getDimensions = (portrait, landscape, square) => {
 
 const cellRenderer = ({ className, children, numberOfRows, numberOfColumns, cache }: {
     className: string,
-    children: React.ReactNodeArray
+    children: React.ReactComponentElement<typeof GameCard>[]
     numberOfRows: number,
     numberOfColumns: number,
     cache: CellMeasurerCache
@@ -78,17 +80,16 @@ const GameCardGrid : React.FunctionComponent<GameCardGridProps & StyleProps> =
       }))
 
       const { BOX_WIDTH } = getDimensions(portrait, landscape, square)
-      const _children = React.Children.toArray(children)
       return (
         <div className={classes.container}>
           <div className={classes.autoSizerContainer}>
             <AutoSizer>
             {({ height, width }) => {
                 const numberOfColumns = Math.floor(width / BOX_WIDTH)
-                const numberOfRows = Math.ceil(_children.length / numberOfColumns)
+                const numberOfRows = Math.ceil(children.length / numberOfColumns)
                 const cellRender = cellRenderer({
                                           className: classes.cellWrapper,
-                                          children: _children,
+                                          children,
                                           numberOfRows,
                                           numberOfColumns,
                                           cache: heightCache

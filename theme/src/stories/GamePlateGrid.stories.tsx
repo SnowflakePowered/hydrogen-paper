@@ -16,21 +16,21 @@ const styles = createStyles({
 
 const SIZE = 200
 
-const Portrait = (key) => <GamePlate title="Super Mario Bros."
+const Portrait = (key) => <GamePlate title={"Super Mario Bros. " + key}
     size={SIZE}
     key={key}
     image={"http://vignette2.wikia.nocookie.net/mario/images/6/60/SMBBoxart.png/revision/latest?cb=20120609143443"}
     subtitle="1983" />
 
 
-const Landscape = (key) => <GamePlate title="Super Mario World"
+const Landscape = (key) => <GamePlate title={"Super Mario World " + key}
     size={SIZE}
     key={key}
     image={"https://upload.wikimedia.org/wikipedia/en/thumb/3/32/Super_Mario_World_Coverart.png/220px-Super_Mario_World_Coverart.png"}
     subtitle="1990" />
 
 
-const Square = (key) => <GamePlate title="New Super Mario Bros."
+const Square = (key) => <GamePlate title={"New Super Mario Bros. " + key}
     size={SIZE}
     key={key}
     image={"https://upload.wikimedia.org/wikipedia/en/d/db/NewSuperMarioBrothers.jpg"}

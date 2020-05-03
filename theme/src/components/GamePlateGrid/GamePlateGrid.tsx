@@ -1,106 +1,85 @@
-import React, { useState } from 'react'
+import React, { memo } from 'react'
+import memoize from 'memoize-one'
+
 import { styles, StyleProps } from './GamePlateGrid.style'
-import { CellMeasurerCache, CellMeasurer, AutoSizer, Grid, ColumnSizer } from 'react-virtualized'
+// import { CellMeasurerCache, CellMeasurer, AutoSizer, Grid, ColumnSizer } from 'react-virtualized'
 import { withStyles } from '@material-ui/core'
+import AutoSizer from 'react-virtualized-auto-sizer'
+import { FixedSizeGrid as Grid, areEqual } from 'react-window'
+import GamePlate from 'components/GamePlate/GamePlate'
+
 
 type GamePlateGridProps = {
   size: number,
-  header?: React.ReactNode
+  header?: React.ReactNode,
+  children: React.ReactComponentElement<typeof GamePlate>[]
 }
 
 type GameCardGridState = {
   scrollElement?: HTMLElement | null,
-  heightCache: CellMeasurerCache
 }
 
-const padding = 12
+type ItemDataType = {
+  children: React.ReactComponentElement<typeof GamePlate>[],
+  columnCount: number,
+}
 
-const cellRenderer = ({ className, children, numberOfRows, numberOfColumns, cache }: {
-    className: string,
-    children: React.ReactNodeArray
-    numberOfRows: number,
-    numberOfColumns: number,
-    cache: CellMeasurerCache
-  }) => 
-    ({ columnIndex, key, parent, rowIndex, style }) => {
-    const content = children[rowIndex * numberOfColumns + columnIndex]
+type ReactWindowGridProps = {
+  columnIndex: number,
+  rowIndex: number,
+  style: React.CSSProperties
+}
+
+const PADDING = 12
+
+const Cell = ({ data, columnIndex, rowIndex, style }) => {
+  const { children, columnCount } = data
+  const content = children[rowIndex * columnCount + columnIndex]
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', ...style }}>
+      {content}
+    </div>
+  )
+}
+
+const createItemData = memoize(({ children, columnCount }: ItemDataType) => ({
+  children,
+  columnCount,
+}));
+
+const GamePlateGrid: React.FunctionComponent<GamePlateGridProps & StyleProps> =
+  ({ size, children, classes }) => {
     return (
-      <CellMeasurer
-        cache={cache}
-        columnIndex={columnIndex}
-        key={key}
-        parent={parent}
-        rowIndex={rowIndex}
-      >
-        <div
-          style={{
-            ...style,
-            height: 35,
-            whiteSpace: 'nowrap',
-            padding: 10
-          }}
-        >
-          {content}
-        </div>
-      </CellMeasurer>
-    )
-  }
-
-const GamePlateGrid : React.FunctionComponent<GamePlateGridProps & StyleProps> =
-    ({ size, children, classes }) => {
-      const [ heightCache, ] = useState(new CellMeasurerCache({
-        defaultWidth: 100,
-        fixedHeight: false,
-        minWidth: 100,
-        defaultHeight: size,
-        minHeight: size,
-        fixedWidth: true
-      }))
-
-      const _children = React.Children.toArray(children)
-      return (
-        <div className={classes.container}>
-          <div className={classes.autoSizerContainer}>
-            <AutoSizer>
+      <div className={classes.container}>
+        <div className={classes.autoSizerContainer}>
+          <AutoSizer>
             {({ height, width }) => {
-                const numberOfColumns = Math.floor(width / (size + 2 * padding))
-                const numberOfRows = Math.ceil(_children.length / numberOfColumns)
-                const cellRender = cellRenderer({
-                                          className: classes.cellWrapper,
-                                          children: _children,
-                                          numberOfRows,
-                                          numberOfColumns,
-                                          cache: heightCache
-                                        })
-                const CENTERED_BOX_WIDTH = size + (size / numberOfColumns / 2) - padding
-                return (
-                  <ColumnSizer
-                    columnMaxWidth={CENTERED_BOX_WIDTH}
-                    columnMinWidth={size}
-                    columnCount={numberOfColumns}
-                    width={width}
-                  >
-                  {({ adjustedWidth, getColumnWidth, registerChild }) => (
-                    <Grid
-                      className={classes.gridContainer}
-                      height={height}
-                      width={width}
-                      ref={registerChild}
-                      // hack to improve performance.
-                      columnWidth={getColumnWidth}
-                      deferredMeasurementCache={heightCache}
-                      cellRenderer={cellRender}
-                      columnCount={numberOfColumns}
-                      rowCount={numberOfRows}
-                      rowHeight={heightCache.rowHeight}
-                      overscanRowCount={3}
-                    />)}
-                  </ColumnSizer>
-              )}}
+              const columnCount = Math.floor(width / (size + 2 * PADDING))
+              const rowCount = Math.ceil(children.length / columnCount)
+              const itemData = createItemData({ children, columnCount });
+              const CENTERED_BOX_SIZE = (size + 2 * PADDING)
+
+              const columnWidth = Math.floor((width - (2 * PADDING)) / columnCount);
+
+              return (<Grid
+                className={classes.gridContainer}
+                height={height}
+                width={width}
+                // hack to improve performance.
+                columnWidth={columnWidth}
+                columnCount={columnCount}
+                itemData={itemData}
+                rowCount={rowCount}
+                overscanRowsCount={5}
+                rowHeight={CENTERED_BOX_SIZE}>
+                {Cell}
+              </Grid>
+              )
+            }}
           </AutoSizer>
         </div>
       </div>
-      )
-}
+    )
+  }
 
 export default withStyles(styles)(GamePlateGrid)
