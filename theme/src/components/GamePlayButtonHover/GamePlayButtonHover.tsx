@@ -5,13 +5,14 @@ import { withStyles } from '@material-ui/core'
 
 type GamePlayButtonProps = {
     onClick?: (event: React.MouseEvent<{}>) => void,
+    onButtonClick?: (event: React.MouseEvent<{}>) => void,
     loading?: boolean
   }
 
-const GamePlayButtonHover: React.SFC<GamePlayButtonProps & StyleProps> = ({classes, onClick, loading}) => (
-    <div className={classes.hoverContainer}>
+const GamePlayButtonHover: React.SFC<GamePlayButtonProps & StyleProps> = ({classes, onClick, onButtonClick, loading}) => (
+    <div className={classes.hoverContainer} onClick={onClick}>
       <div className={classes.playButton}>
-          <GamePlayButton onClick={onClick}/>
+          <GamePlayButton onClick={onButtonClick}/>
       </div>
     </div>
   )

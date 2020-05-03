@@ -1,15 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import { Typography, Card, CardContent, CardMedia, withStyles } from '@material-ui/core'
+import { Typography, withStyles } from '@material-ui/core'
 
-import GamePlayButton from 'components/GamePlayButton/GamePlayButton'
-
-import PhotoIcon from '@material-ui/icons/Photo'
-
-import classNames from 'classnames'
 import { styles, StyleProps } from './GamePlate.style'
-import { QuickPlayEvent } from 'support/ComponentEvents/QuickPlayEvent'
-import { ViewTransitionEvent, ViewStates } from 'support/ComponentEvents/ViewTransitionEvent'
 import GamePlayButtonHover from 'components/GamePlayButtonHover/GamePlayButtonHover'
 import ImageCard from 'components/ImageCard/ImageCard'
 
@@ -25,32 +18,36 @@ type GamePlateProps = {
   subtitle?: string,
   portrait?: boolean,
   size: number,
-  onQuickPlay?: (event: QuickPlayEvent) => void
-  onTransition?: (event: ViewTransitionEvent<GameDetailsTransitionProps>) => void
+  onCardClick?: (event: React.MouseEvent<{}>) => void
+  onCardButtonClick?: (event: React.MouseEvent<{}>) => void
 }
 
 const GamePlate: React.FunctionComponent<GamePlateProps & StyleProps> =
- ({ classes, size, image, title, subtitle }) => (
-  <div className={classes.plateContainer} style={{width: size, height: size}}>
-    <div className={classes.centeredContainer}>
-      <div className={classes.coverArtImageContainer}>
-        <GamePlayButtonHover/>
-        <ImageCard className={classes.coverArtImage} image={image} height={size * 0.75}/>
-      </div>
-      <div className={classes.textContainer}>
-        <div className={classes.titleText}>
-          <Typography color='textPrimary'
-            className={classes.titleTextContent}>{title}
-          </Typography>
+ ({ classes, size, image, title, subtitle, onCardButtonClick, onCardClick }) => {
+   const [hover, setHover] = useState(false);
+   return (<div className={classes.plateContainer} style={{width: size, height: size}}>
+      <div className={classes.centeredContainer}>
+        <div className={classes.coverArtImageContainer} 
+          onMouseOver={() => setHover(true)}
+          onMouseOut={() => setHover(false)}>
+          <GamePlayButtonHover onButtonClick={onCardButtonClick} onClick={onCardClick}/>
+          <ImageCard elevation={hover ? 4 : 1} className={classes.coverArtImage} image={image} height={size * 0.75}/>
         </div>
-        <div className={classes.subtitleText}>
-        <Typography color='textSecondary'
-            variant='caption'
-            className={classes.subtitleTextContent}>{subtitle ?? ''}
-          </Typography>
+        <div className={classes.textContainer}>
+          <div className={classes.titleText}>
+            <Typography color='textPrimary'
+              className={classes.titleTextContent}>{title}
+            </Typography>
+          </div>
+          <div className={classes.subtitleText}>
+          <Typography color='textSecondary'
+              variant='caption'
+              className={classes.subtitleTextContent}>{subtitle ?? ''}
+            </Typography>
+          </div>
         </div>
       </div>
-    </div>
-  </div>)
+    </div>)
+ }
 
 export default withStyles(styles)(GamePlate)
