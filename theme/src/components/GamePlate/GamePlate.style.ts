@@ -3,22 +3,6 @@ import { WithStyles, createStyles } from '@material-ui/core/styles'
 
 export type StyleProps = WithStyles<typeof styles>
 
-export const dimensions = {
-  portrait: {
-    width: 160,
-    height: 200
-  },
-  landscape: {
-    width: 185,
-    height: 135
-  },
-  square: {
-    width: 175,
-    height: 165
-  },
-  contentHeight: 84
-}
-
 export const styles = createStyles({
   plateContainer: {
     padding: 0,
