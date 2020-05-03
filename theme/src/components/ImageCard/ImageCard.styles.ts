@@ -15,16 +15,20 @@ export const styles = createStyles({
       userDrag: 'none',
       userSelect: 'none',
       maxHeight: 'inherit',
-      maxWidth: 'inherit'
+      maxWidth: 'inherit',
+      transition: 'opacity 0.2s ease-out',
+      opacity: 0,
     },
     paperContainer: {
       display: 'block',
       maxWidth: 'fit-content',
     },
     paper: {
-      display: 'inline-block',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
       maxWidth: 'inherit',
-      maxHeight: 'inherit'
+      maxHeight: 'inherit',
     },
     root: {
       width: 'inherit',
@@ -36,6 +40,9 @@ export const styles = createStyles({
     padding: {
       width: 'inherit',
       height: 'inherit'
+    },
+    imageLoaded: {
+      opacity: 1
     }
   })
   

@@ -15884,6 +15884,16 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"react-progressive-image@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "react-progressive-image@npm:0.6.0"
+  peerDependencies:
+    react: ^15.0.0-0 || ^16.0.0-0
+    react-dom: ^15.0.0-0 || ^16.0.0-0
+  checksum: 2/9a69dc9136e80eff4d64efb8e2178aa38330880518f895dd38e284fd00c0e9b62ca0309608da5bf65e538d1b1221b424e568f0259bbffbc73ee9fa88d446229f
+  languageName: node
+  linkType: hard
+
 "react-scripts@npm:3.4.1":
   version: 3.4.1
   resolution: "react-scripts@npm:3.4.1"
@@ -18202,6 +18212,7 @@ resolve@^1.17.0:
     prop-types: ^15.7.2
     react: ^16.13.1
     react-dom: ^16.13.1
+    react-progressive-image: ^0.6.0
     react-scripts: 3.4.1
     react-virtualized: ^9.21.2
     react-virtualized-auto-sizer: ^1.0.2
