@@ -11,7 +11,7 @@ export default {
 
 const styles = createStyles({
     container: {
-        height: 'calc(100vh - 84px)'
+        height: 'calc(100vh - 32px)'
     }
 })
 
