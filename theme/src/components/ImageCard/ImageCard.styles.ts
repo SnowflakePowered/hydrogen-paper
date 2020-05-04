@@ -10,7 +10,7 @@ export const styles = createStyles({
       display: 'grid'
     },
     image: {
-      objectFit: 'contain',
+      objectFit: 'fill',
       borderRadius: 'inherit',
       userDrag: 'none',
       userSelect: 'none',
