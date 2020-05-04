@@ -1,5 +1,5 @@
 import { StyleRules, createStyles, WithStyles } from '@material-ui/core/styles'
-import { blue } from '@material-ui/core/colors'
+import { grey } from '@material-ui/core/colors'
 
 export type StyleProps = WithStyles<typeof styles>
 
@@ -13,12 +13,16 @@ export const styles = createStyles({
     fontFamily: 'Roboto, sans-serif',
     '&:hover, &:focus': {
       opacity: 1
-    }
+    },
+    background: grey[200],
+    borderRadius: 3,
   },
   searchIcon: {
-    justifySelf: 'center'
+    justifySelf: 'center',
+    color: grey[700]
   },
-  textFieldUnderline: {
+  inputField: {
+    color: grey[500],
     '&:after': {
       background: 'none'
     }
