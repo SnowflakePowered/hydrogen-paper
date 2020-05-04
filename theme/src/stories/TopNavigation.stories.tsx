@@ -9,4 +9,4 @@ export default {
 };
 
 export const TopNavigationStory = () => <TopNavigation onForward={action('on-forward')} 
-    onBackward={action('on-backward')} onSettings={action('on-settings')} onAdd={action('on-add')}/>
+    onBackward={action('on-backward')} onSettings={action('on-settings')}/>

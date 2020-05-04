@@ -30,7 +30,7 @@ const DecimalWidget: React.FunctionComponent<DecimalWidgetProps & WidgetChildren
           step={0.01}
           valueLabelDisplay="auto"
           onChange={(e, newValue) =>
-            onValueChange!({
+            onValueChange?.({
               newValue: newValue as number,
               valueGuid: option.Value.Guid,
               previousValue: option.Value.Value,

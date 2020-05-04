@@ -19,7 +19,7 @@ const StringWidget: React.FunctionComponent<StringWidgetProps & WidgetChildrenPr
     >
      <TextField
       value={option.Value.Value as string}
-      onChange={(e) => onValueChange!({
+      onChange={(e) => onValueChange?.({
           newValue: e.target.value,
           valueGuid: option.Value.Guid,
           previousValue: option.Value.Value,

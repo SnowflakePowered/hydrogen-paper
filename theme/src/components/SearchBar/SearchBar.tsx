@@ -13,7 +13,7 @@ type SearchBarProps = {
 }
 
 const handleSearch: (eventHandler?: SearchBarEventHandler) => ChangeEventHandler = 
-  (eventHandler) => (event) => { eventHandler && eventHandler({searchQuery: event.target.value}) }
+  (eventHandler) => (event) => { eventHandler?.({searchQuery: event.target.value}) }
 
 const SearchBar: React.SFC<SearchBarProps & StyleProps> = ({ classes, tagline, onSearch }) => (
   <div className={classes.barContainer}>

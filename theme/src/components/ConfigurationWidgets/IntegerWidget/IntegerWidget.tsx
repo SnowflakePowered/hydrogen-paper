@@ -31,7 +31,7 @@ const IntegerWidget: React.FunctionComponent<IntegerWidgetProps & WidgetChildren
           marks={true}
           valueLabelDisplay="auto"
           onChange={(_, newValue) =>
-            onValueChange!({
+            onValueChange?.({
               newValue: newValue as number,
               valueGuid: option.Value.Guid,
               previousValue: option.Value.Value,

@@ -3,25 +3,21 @@ import { withStyles, IconButton } from '@material-ui/core'
 import { styles, StyleProps } from './TopNavigation.style'
 import classNames from 'classnames'
 import NavigationButtons from 'components/NavigationButtons/NavigationButtons'
-import { Settings, Add } from '@material-ui/icons'
+import { Settings} from '@material-ui/icons'
 type ComponentProps = {
   onSettings?: VoidFunction,
-  onAdd?: VoidFunction,
   className?: string,
 } & React.ComponentPropsWithoutRef<typeof NavigationButtons>
 
-const TopNavigation: React.FunctionComponent<ComponentProps & StyleProps> = ({classes, className, onForward, onBackward, onSettings, onAdd }) => (
+const TopNavigation: React.FunctionComponent<ComponentProps & StyleProps> = ({classes, className, onForward, onBackward, onSettings }) => (
   <div className={
       classNames({
         [classes.buttonContainer]: true,
-        [className]: className !== undefined,
+        [className ?? ""]: className !== undefined,
       })}>
     <div className={classes.left}>
-      <IconButton className={classes.button} onClick={onSettings}>
+      <IconButton edge="end" className={classes.button} onClick={onSettings}>
         <Settings/>
-      </IconButton>
-      <IconButton className={classes.button} onClick={onAdd}>
-        <Add/>
       </IconButton>
     </div>
     <div className={classes.right}>

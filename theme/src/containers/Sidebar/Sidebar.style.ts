@@ -45,5 +45,8 @@ export const styles = createStyles({
         gridTemplateColumns: '1fr',
         gridTemplateRows: '64px 1fr',
         gridTemplateAreas: '"TopNavigation" "ListContainer"'
+    },
+    button: {
+        textTransform: 'none'
     }
 })

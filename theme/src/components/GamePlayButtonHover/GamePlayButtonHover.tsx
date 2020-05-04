@@ -14,7 +14,7 @@ type GamePlayButtonProps = {
 }
 
 const onlyButtonEvent : (onButtonClick?: MouseEventHandler) => (event: React.MouseEvent<{}>) => void = (onButtonClick) => event => {
-  if (onButtonClick !== undefined) onButtonClick(event)
+  onButtonClick?.(event)
   event.stopPropagation()
 }
 

@@ -15,10 +15,10 @@ const NavigationButtons: React.FunctionComponent<ComponentProps & StyleProps> =
       [classes.buttonContainer]: true,
       [className ?? '']: className !== undefined
     })}>
-      <IconButton onClick={onBackward} className={classes.buttons}>
+      <IconButton edge="end" onClick={onBackward} className={classes.buttons}>
         <ArrowBack />
       </IconButton>
-      <IconButton onClick={onForward} className={classes.buttons}>
+      <IconButton edge="end" onClick={onForward} className={classes.buttons}>
         <ArrowForward />
       </IconButton>
     </div>

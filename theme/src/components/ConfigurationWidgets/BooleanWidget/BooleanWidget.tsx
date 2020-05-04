@@ -21,7 +21,7 @@ const BooleanWidget: React.FunctionComponent<BooleanWidgetProps & WidgetChildren
     >
     <Switch
         checked={option.Value.Value as boolean}
-        onChange={(_, newValue) => onValueChange!({
+        onChange={(_, newValue) => onValueChange?.({
                 previousValue: option.Value.Value,
                 newValue: newValue,
                 type: 'boolean',

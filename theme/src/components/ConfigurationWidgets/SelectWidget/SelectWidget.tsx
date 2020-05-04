@@ -20,7 +20,7 @@ const SelectWidget: React.FunctionComponent<SelectWidgetProps & WidgetChildrenPr
     >
       <Select
         value={option.Value.Value as number}
-        onChange={(e, newValue) => onValueChange!(
+        onChange={(e, newValue) => onValueChange?.(
           {
             previousValue: option.Value.Value as number,
             newValue: parseInt(e.target.value as string, 10),
