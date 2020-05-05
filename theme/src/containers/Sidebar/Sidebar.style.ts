@@ -43,7 +43,7 @@ export const styles = createStyles({
         height: '100%',
         display: 'grid',
         gridTemplateColumns: '1fr',
-        gridTemplateRows: '64px 1fr',
+        gridTemplateRows: '72px 1fr',
         gridTemplateAreas: '"TopNavigation" "ListContainer"'
     },
     button: {
