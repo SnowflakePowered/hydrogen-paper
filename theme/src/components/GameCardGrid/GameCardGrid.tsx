@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
-import { dimensions } from 'components/GameCard/GameCard.style'
-import { styles, StyleProps } from './GameCardGrid.style'
-import { CellMeasurerCache, CellMeasurer, AutoSizer, Grid, ColumnSizer } from 'react-virtualized'
+import React from 'react'
+import memoize from 'memoize-one'
 import { withStyles } from '@material-ui/core'
+import AutoSizer from 'react-virtualized-auto-sizer'
+import { FixedSizeGrid as Grid } from 'react-window'
+
+import { styles, StyleProps } from './GameCardGrid.style'
 import GameCard from 'components/GameCard/GameCard'
+import { dimensions } from 'components/GameCard/GameCard.style'
 
 type GameCardGridProps = {
   portrait?: boolean,
@@ -13,12 +16,7 @@ type GameCardGridProps = {
   children: React.ReactComponentElement<typeof GameCard>[]
 }
 
-type GameCardGridState = {
-  scrollElement?: HTMLElement | null,
-  heightCache: CellMeasurerCache
-}
-
-const padding = 24
+const PADDING = 24
 
 const getDimensions = (portrait, landscape, square) => {
   let dimensionObject
@@ -32,97 +30,71 @@ const getDimensions = (portrait, landscape, square) => {
     dimensionObject = dimensions.portrait
   }
 
-  return { 
-    BOX_HEIGHT: dimensionObject.height + dimensions.contentHeight + padding,
-    BOX_WIDTH: dimensionObject.width + padding }
+  return {
+    BOX_HEIGHT: dimensionObject.height + dimensions.contentHeight + PADDING,
+    BOX_WIDTH: dimensionObject.width + PADDING
+  }
 }
 
-const cellRenderer = ({ className, children, numberOfRows, numberOfColumns, cache }: {
-    className: string,
-    children: React.ReactComponentElement<typeof GameCard>[]
-    numberOfRows: number,
-    numberOfColumns: number,
-    cache: CellMeasurerCache
-  }) => 
-    ({ columnIndex, key, parent, rowIndex, style }) => {
-    const content = children[rowIndex * numberOfColumns + columnIndex]
-    return (
-      <CellMeasurer
-        cache={cache}
-        columnIndex={columnIndex}
-        key={key}
-        parent={parent}
-        rowIndex={rowIndex}
+type ItemDataType = {
+  children: React.ReactComponentElement<typeof GameCard>[],
+  columnCount: number,
+}
+
+const Cell = ({ data, columnIndex, rowIndex, style }) => {
+  const { children, columnCount } = data
+  const content = children[rowIndex * columnCount + columnIndex]
+  return (
+    <div
+        style={{
+          ...style,
+          height: 35,
+          whiteSpace: 'nowrap',
+          padding: 10
+        }}
       >
-        <div
-          style={{
-            ...style,
-            height: 35,
-            whiteSpace: 'nowrap',
-            padding: 10
-          }}
-        >
-          {content}
-        </div>
-      </CellMeasurer>
-    )
-  }
+        {content}
+      </div>
+  )
+}
 
-const GameCardGrid : React.FunctionComponent<GameCardGridProps & StyleProps> =
-    ({ portrait, landscape, square, children, classes }) => {
-      const [ heightCache, ] = useState(new CellMeasurerCache({
-        defaultWidth: 100,
-        fixedHeight: false,
-        minWidth: 100,
-        defaultHeight: 250,
-        minHeight: 100,
-        fixedWidth: true
-      }))
 
-      const { BOX_WIDTH } = getDimensions(portrait, landscape, square)
-      return (
-        <div className={classes.container}>
-          <div className={classes.autoSizerContainer}>
-            <AutoSizer>
-            {({ height, width }) => {
-                const numberOfColumns = Math.floor(width / BOX_WIDTH)
-                const numberOfRows = Math.ceil(children.length / numberOfColumns)
-                const cellRender = cellRenderer({
-                                          className: classes.cellWrapper,
-                                          children,
-                                          numberOfRows,
-                                          numberOfColumns,
-                                          cache: heightCache
-                                        })
-                const CENTERED_BOX_WIDTH = BOX_WIDTH + (BOX_WIDTH / numberOfColumns / 2) - padding
-                return (
-                  <ColumnSizer
-                    columnMaxWidth={CENTERED_BOX_WIDTH}
-                    columnMinWidth={BOX_WIDTH}
-                    columnCount={numberOfColumns}
-                    width={width}
-                  >
-                  {({ adjustedWidth, getColumnWidth, registerChild }) => (
-                    <Grid
-                      className={classes.gridContainer}
-                      height={height}
-                      width={width}
-                      ref={registerChild}
-                      // hack to improve performance.
-                      columnWidth={getColumnWidth}
-                      deferredMeasurementCache={heightCache}
-                      cellRenderer={cellRender}
-                      columnCount={numberOfColumns}
-                      rowCount={numberOfRows}
-                      rowHeight={heightCache.rowHeight}
-                      overscanRowCount={3}
-                    />)}
-                  </ColumnSizer>
-              )}}
+const createItemData = memoize(({ children, columnCount }: ItemDataType) => ({
+  children,
+  columnCount,
+}));
+
+const GameCardGrid: React.FunctionComponent<GameCardGridProps & StyleProps> =
+  ({ portrait, landscape, square, children, classes }) => {
+    const { BOX_WIDTH, BOX_HEIGHT } = getDimensions(portrait, landscape, square)
+    return (
+      <div className={classes.container}>
+        <div className={classes.autoSizerContainer}>
+          <AutoSizer>
+          {({ height, width }) => {
+              const columnCount = Math.floor(width / BOX_WIDTH)
+              const rowCount = Math.ceil(children.length / columnCount)
+              const itemData = createItemData({ children, columnCount });
+              const columnWidth = Math.floor((width - (2 * PADDING)) / columnCount);
+
+              return (<Grid
+                className={classes.gridContainer}
+                height={height}
+                width={width}
+                columnWidth={columnWidth}
+                columnCount={columnCount}
+                itemData={itemData}
+                rowCount={rowCount}
+                overscanRowsCount={5}
+                rowHeight={BOX_HEIGHT}>
+                {Cell}
+              </Grid>
+              )
+            }}
           </AutoSizer>
         </div>
       </div>
-      )
-}
+    )
+  }
 
 export default withStyles(styles)(GameCardGrid)

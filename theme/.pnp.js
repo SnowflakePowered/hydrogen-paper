@@ -51,7 +51,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:13.13.4"],
             ["@types/react", "npm:16.9.34"],
             ["@types/react-dom", "npm:16.9.7"],
-            ["@types/react-virtualized", "npm:9.21.9"],
             ["@types/react-virtualized-auto-sizer", "npm:1.0.0"],
             ["@types/react-window", "npm:1.8.2"],
             ["@yarnpkg/pnpify", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:2.0.0-rc.22"],
@@ -63,7 +62,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:16.13.1"],
             ["react-progressive-image", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:0.6.0"],
             ["react-scripts", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:3.4.1"],
-            ["react-virtualized", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:9.21.2"],
             ["react-virtualized-auto-sizer", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:1.0.2"],
             ["react-window", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:1.8.5"],
             ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=273569"],
@@ -6753,17 +6751,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-react-transition-group-npm-4.2.4-234328038d-2.zip/node_modules/@types/react-transition-group/",
           "packageDependencies": [
             ["@types/react-transition-group", "npm:4.2.4"],
-            ["@types/react", "npm:16.9.22"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@types/react-virtualized", [
-        ["npm:9.21.9", {
-          "packageLocation": "./.yarn/cache/@types-react-virtualized-npm-9.21.9-61c9379d40-2.zip/node_modules/@types/react-virtualized/",
-          "packageDependencies": [
-            ["@types/react-virtualized", "npm:9.21.9"],
-            ["@types/prop-types", "npm:15.7.3"],
             ["@types/react", "npm:16.9.22"]
           ],
           "linkType": "HARD",
@@ -20403,27 +20390,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["react-virtualized", [
-        ["virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:9.21.2", {
-          "packageLocation": "./.yarn/$$virtual/react-virtualized-virtual-6e7e58dbfe/0/cache/react-virtualized-npm-9.21.2-ebc2a83901-2.zip/node_modules/react-virtualized/",
-          "packageDependencies": [
-            ["react-virtualized", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:9.21.2"],
-            ["babel-runtime", "npm:6.26.0"],
-            ["clsx", "npm:1.1.0"],
-            ["dom-helpers", "npm:5.1.4"],
-            ["loose-envify", "npm:1.4.0"],
-            ["prop-types", "npm:15.7.2"],
-            ["react", "npm:16.13.1"],
-            ["react-dom", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:16.13.1"],
-            ["react-lifecycles-compat", "npm:3.0.4"]
-          ],
-          "packagePeers": [
-            "react",
-            "react-dom"
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["react-virtualized-auto-sizer", [
         ["virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:1.0.2", {
           "packageLocation": "./.yarn/$$virtual/react-virtualized-auto-sizer-virtual-3adc831898/0/cache/react-virtualized-auto-sizer-npm-1.0.2-e1e8c3209e-2.zip/node_modules/react-virtualized-auto-sizer/",
@@ -22728,7 +22694,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:13.13.4"],
             ["@types/react", "npm:16.9.34"],
             ["@types/react-dom", "npm:16.9.7"],
-            ["@types/react-virtualized", "npm:9.21.9"],
             ["@types/react-virtualized-auto-sizer", "npm:1.0.0"],
             ["@types/react-window", "npm:1.8.2"],
             ["@yarnpkg/pnpify", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:2.0.0-rc.22"],
@@ -22740,7 +22705,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:16.13.1"],
             ["react-progressive-image", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:0.6.0"],
             ["react-scripts", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:3.4.1"],
-            ["react-virtualized", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:9.21.2"],
             ["react-virtualized-auto-sizer", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:1.0.2"],
             ["react-window", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:1.8.5"],
             ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=273569"],

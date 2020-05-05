@@ -2,10 +2,9 @@ import React, { memo } from 'react'
 import memoize from 'memoize-one'
 
 import { styles, StyleProps } from './GamePlateGrid.style'
-// import { CellMeasurerCache, CellMeasurer, AutoSizer, Grid, ColumnSizer } from 'react-virtualized'
 import { withStyles } from '@material-ui/core'
 import AutoSizer from 'react-virtualized-auto-sizer'
-import { FixedSizeGrid as Grid, areEqual } from 'react-window'
+import { FixedSizeGrid as Grid } from 'react-window'
 import GamePlate from 'components/GamePlate/GamePlate'
 
 
