@@ -59,7 +59,6 @@ const GamePlateGrid: React.FunctionComponent<GamePlateGridProps & StyleProps> =
                 className={classes.gridContainer}
                 height={height}
                 width={width}
-                // hack to improve performance.
                 columnWidth={columnWidth}
                 columnCount={columnCount}
                 itemData={itemData}

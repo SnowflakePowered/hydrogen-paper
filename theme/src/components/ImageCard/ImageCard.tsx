@@ -42,7 +42,7 @@ const ImageCard: React.FunctionComponent<ImageCardProps & StyleProps> = ({ class
                             onLoad={setLoadedTrue}
                             src={src} style={{ maxHeight: height, maxWidth: width }} alt="ImageCard" />}
                 </ProgressiveImage>
-                : <PhotoIcon />
+                : <PhotoIcon color='disabled' />
               }
             </div>
           </Paper>

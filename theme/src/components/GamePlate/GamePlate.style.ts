@@ -9,6 +9,7 @@ export const styles = createStyles({
     boxSizing: 'border-box',
     display: 'inline-flex',
     justifyContent: 'center',
+    '-webkit-user-drag': 'none',
   },
   coverArtImageContainer: {
     position: 'relative', // Keeps the hover container within bounds.
