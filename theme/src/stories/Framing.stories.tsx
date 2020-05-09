@@ -108,7 +108,7 @@ const FramingStory = withStyles(styles)(({ classes }) => {
 
     return (
         <div className={classes.container}>
-            <Framing sidebar={<MySidebar/>} titleHeader={<MyTitleHeader/>}>
+            <Framing sidebar={<MySidebar/>} titleHeader={<MyTitleHeader/>} status="Installing Game...">
                 <GamePlateGrid size={SIZE}>
                     {
                         gameList
