@@ -15,7 +15,6 @@ export default {
     component: Framing,
 };
 
-
 const styles = createStyles({
     container: {
         height: 'calc(100vh - 32px)'
@@ -108,7 +107,7 @@ const FramingStory = withStyles(styles)(({ classes }) => {
 
     return (
         <div className={classes.container}>
-            <Framing sidebar={<MySidebar/>} titleHeader={<MyTitleHeader/>} status="Installing Game...">
+            <Framing sidebar={<MySidebar/>} titleHeader={<MyTitleHeader/>} status="Installing Game..." spinner={true}>
                 <GamePlateGrid size={SIZE}>
                     {
                         gameList

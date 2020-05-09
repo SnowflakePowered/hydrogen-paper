@@ -47,12 +47,15 @@ const Sidebar: React.FunctionComponent<ComponentProps & StyleProps>
                 Consoles
           {selectedPlatform !== undefined
                   ? <ListItemSecondaryAction>
-                      <Button
+                    <IconButton className={classes.button}>
+                      <AddIcon />
+                    </IconButton>
+                      {/* <Button
                         className={classes.button}
                         startIcon={<AddIcon />}
                       >
                         Add Game
-                      </Button>
+                      </Button> */}
                     </ListItemSecondaryAction>
                   : <></>
                 }
@@ -73,12 +76,15 @@ const Sidebar: React.FunctionComponent<ComponentProps & StyleProps>
               <ListSubheader className={classes.listSubheader}>
                 Collections
                 <ListItemSecondaryAction>
-                  <Button
+                  <IconButton className={classes.button}>
+                    <AddIcon />
+                  </IconButton>
+                  {/* <Button
                         className={classes.button}
                         startIcon={<AddIcon />}
                       >
                         New Collection
-                      </Button>
+                      </Button> */}
                 </ListItemSecondaryAction>
               </ListSubheader>
             }

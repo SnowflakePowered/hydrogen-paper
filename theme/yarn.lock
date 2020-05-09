@@ -6402,7 +6402,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:^2.2.5, classnames@npm:^2.2.6":
+"classnames@npm:^2.2.5":
   version: 2.2.6
   resolution: "classnames@npm:2.2.6"
   checksum: 2/490eaeca5931846737ffd33e472a701d268d5b8bc5717dd4cf108a127b06e86e05350e06799abbbe763a0e4c945b4217f6700b7ae00ddc703505682c370e5cf2
@@ -6537,7 +6537,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^1.0.2, clsx@npm:^1.0.4":
+"clsx@npm:^1.0.2, clsx@npm:^1.0.4, clsx@npm:^1.1.0":
   version: 1.1.0
   resolution: "clsx@npm:1.1.0"
   checksum: 2/aebac019d24b4f40d28490fa31abdb7791d50242d928f27faa3aef44150f410600eb3c64ab6af01c66c3a022313d1c578a3e57c26bd6040bc15d30699824456c
@@ -17965,7 +17965,7 @@ resolve@^1.17.0:
     "@types/react-window": 1.8.2
     "@yarnpkg/pnpify": ^2.0.0-rc.22
     babel-loader: ^8.1.0
-    classnames: ^2.2.6
+    clsx: ^1.1.0
     memoize-one: ^5.1.1
     prop-types: ^15.7.2
     react: ^16.13.1

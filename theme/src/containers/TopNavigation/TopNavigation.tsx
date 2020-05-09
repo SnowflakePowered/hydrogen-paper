@@ -1,7 +1,7 @@
 import React from 'react'
 import { withStyles, IconButton } from '@material-ui/core'
 import { styles, StyleProps } from './TopNavigation.style'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import NavigationButtons from 'components/NavigationButtons/NavigationButtons'
 import { Settings} from '@material-ui/icons'
 type ComponentProps = {
@@ -10,11 +10,7 @@ type ComponentProps = {
 } & React.ComponentPropsWithoutRef<typeof NavigationButtons>
 
 const TopNavigation: React.FunctionComponent<ComponentProps & StyleProps> = ({classes, className, onForward, onBackward, onSettings }) => (
-  <div className={
-      classNames({
-        [classes.buttonContainer]: true,
-        [className ?? ""]: className !== undefined,
-      })}>
+  <div className={clsx(classes.buttonContainer, className)}>
     <div className={classes.left}>
       <IconButton edge="end" className={classes.button} onClick={onSettings}>
         <Settings/>

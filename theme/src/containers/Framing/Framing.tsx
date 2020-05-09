@@ -3,14 +3,17 @@ import { withStyles, Typography } from '@material-ui/core'
 import { styles, StyleProps } from './Framing.style'
 import Sidebar from 'containers/Sidebar/Sidebar'
 import TitleHeader from 'components/TitleHeader/TitleHeader'
+import Status from 'components/Status/Status'
 
 type ComponentProps = {
  sidebar: React.ReactComponentElement<typeof Sidebar>
  titleHeader: React.ReactComponentElement<typeof TitleHeader>
  status?: string,
+ spinner?: boolean,
 }
 
-const Bootstrap: React.FunctionComponent<ComponentProps & StyleProps> = ({classes, sidebar, titleHeader, children, status}) => (
+const Bootstrap: React.FunctionComponent<ComponentProps & StyleProps> = 
+  ({classes, sidebar, titleHeader, children, status, spinner}) => (
   <div className={classes.framing}>
     <div style={{gridArea: 'Sidebar'}}>
       {sidebar}
@@ -21,8 +24,8 @@ const Bootstrap: React.FunctionComponent<ComponentProps & StyleProps> = ({classe
     <div style={{gridArea: 'ViewComponent'}}>
       {children}
     </div>
-    <div style={{gridArea: 'StatusBar'}} className={classes.statusBar}>
-      <Typography>{ status ?? ""}</Typography>
+    <div style={{gridArea: 'StatusBar'}}>
+      <Status spinner={spinner} status={status}/>
     </div>
   </div>
 )

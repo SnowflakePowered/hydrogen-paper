@@ -2,7 +2,7 @@ import React from 'react'
 import GamePlayButton from 'components/GamePlayButton/GamePlayButton'
 import { styles, StyleProps } from './GamePlayButtonHover.style'
 import { withStyles } from '@material-ui/core'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 type MouseEventHandler = (event: React.MouseEvent<{}>) => void
 
@@ -19,10 +19,7 @@ const onlyButtonEvent : (onButtonClick?: MouseEventHandler) => (event: React.Mou
 }
 
 const GamePlayButtonHover: React.SFC<GamePlayButtonProps & StyleProps> = ({classes, onClick, onButtonClick, loading, className}) => (
-    <div className={classNames({
-        [classes.hoverContainer]: true,
-        [className ?? '']: className !== undefined
-      })}
+    <div className={clsx(classes.hoverContainer, className)}
       onClick={onClick}>
       <div className={classes.playButton}>
           <GamePlayButton onClick={onlyButtonEvent(onButtonClick)} loading={loading}/>

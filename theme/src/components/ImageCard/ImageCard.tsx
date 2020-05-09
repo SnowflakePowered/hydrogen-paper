@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types'
 import { Paper, withStyles } from '@material-ui/core'
 import { styles, StyleProps } from 'components/ImageCard/ImageCard.styles'
 import PhotoIcon from '@material-ui/icons/Photo'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import ProgressiveImage from 'react-progressive-image'
 
 type ImageCardProps = {
@@ -22,11 +22,7 @@ const ImageCard: React.FunctionComponent<ImageCardProps & StyleProps> = ({ class
     <div className={classes.padding}>
       <div className={classes.root}>
         <div className={classes.paperContainer}>
-          <Paper elevation={elevation || 1} className={
-            classNames({
-              [classes.paper]: [true],
-              [className ?? '']: className !== undefined
-            })}
+          <Paper elevation={elevation || 1} className={clsx(classes.paper, className)}
             style={{
               minHeight: Math.min(height, 100),
               minWidth: Math.min(height, 100)
@@ -36,11 +32,11 @@ const ImageCard: React.FunctionComponent<ImageCardProps & StyleProps> = ({ class
                 <ProgressiveImage delay={75} src={image} placeholder="">
                   {(src, loading) =>
                     loading ? <PhotoIcon color='disabled' />
-                      : <img className={classNames({
-                          [classes.image]: true,
-                          [classes.imageLoaded]: loaded })}
-                            onLoad={setLoadedTrue}
-                            src={src} style={{ maxHeight: height, maxWidth: width }} alt="ImageCard" />}
+                      : <img className={clsx(classes.image, {
+                        [classes.imageLoaded]: loaded
+                      })}
+                        onLoad={setLoadedTrue}
+                        src={src} style={{ maxHeight: height, maxWidth: width }} alt="ImageCard" />}
                 </ProgressiveImage>
                 : <PhotoIcon color='disabled' />
               }

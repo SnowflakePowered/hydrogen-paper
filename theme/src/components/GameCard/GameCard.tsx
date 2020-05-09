@@ -6,7 +6,7 @@ import GamePlayButton from 'components/GamePlayButton/GamePlayButton'
 
 import PhotoIcon from '@material-ui/icons/Photo'
 
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { styles, StyleProps } from './GameCard.style'
 import { QuickPlayEvent } from 'support/ComponentEvents/QuickPlayEvent'
 import { ViewTransitionEvent, ViewStates } from 'support/ComponentEvents/ViewTransitionEvent'
@@ -37,7 +37,7 @@ const GameCard: React.FunctionComponent<GameCardProps & StyleProps> =
  ({ classes, image, title, subtitle, portrait, landscape, square, guid, platformID,
     onQuickPlay, onTransition, noTitle }) => (
   <div 
-    className={classNames({
+    className={clsx({
       [classes.cardContainer]: true,
       [classes.cardContainerSquare]: square,
       [classes.cardContainerLandscape]: landscape,
@@ -49,7 +49,7 @@ const GameCard: React.FunctionComponent<GameCardProps & StyleProps> =
       <CardMedia className={classes.cardMedia} image={image}>
       <GamePlayButtonHover onClick={() => onQuickPlay!({gameGuid: guid})}/>
         <div 
-          className={classNames({
+          className={clsx({
             [classes.sizer]: true,
             [classes.sizerSquare]: square,
             [classes.sizerLandscape]: landscape,

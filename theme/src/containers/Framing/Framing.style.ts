@@ -13,9 +13,4 @@ export const styles = createStyles({
       height: '100%',
       gap: '0px 8px',
   },
-  statusBar: {
-    userSelect: 'none',
-    fontSize: 12,
-    lineHeight: 16
-  }
 })
