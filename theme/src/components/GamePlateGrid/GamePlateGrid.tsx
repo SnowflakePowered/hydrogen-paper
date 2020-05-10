@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 import memoize from 'memoize-one'
 
 import { styles, StyleProps } from './GamePlateGrid.style'
@@ -18,12 +18,6 @@ type ItemDataType = {
   columnCount: number,
 }
 
-type ReactWindowGridProps = {
-  columnIndex: number,
-  rowIndex: number,
-  style: React.CSSProperties
-}
-
 const PADDING = 12
 
 const Cell = ({ data, columnIndex, rowIndex, style }) => {
@@ -39,7 +33,7 @@ const Cell = ({ data, columnIndex, rowIndex, style }) => {
 const createItemData = memoize(({ children, columnCount }: ItemDataType) => ({
   children,
   columnCount,
-}));
+}))
 
 const GamePlateGrid: React.FunctionComponent<GamePlateGridProps & StyleProps> =
   ({ size, children, classes }) => {
