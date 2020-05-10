@@ -6,9 +6,16 @@ export const styles = createStyles({
     container: {
         height: '100%',
         display: 'grid',
-        gridTemplateRows: '96px 1fr',
+        gridTemplateRows: '96px 1fr 48px',
         gridTemplateAreas: `"Header"
-                            "Table"`
+                            "Table"
+                            "Button"`
+    },
+    buttonContainer: {
+        gridArea: "Button",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end'
     },
     listContainer: {
         gridArea: 'Table',
