@@ -20,7 +20,7 @@ type ItemDataType = {
 
 const PADDING = 12
 
-const Cell = ({ data, columnIndex, rowIndex, style }) => {
+const Cell = ({ data, columnIndex, rowIndex, style }: {data: ItemDataType, columnIndex: number, rowIndex: number, style: React.CSSProperties}) => {
   const { children, columnCount } = data
   const content = children[rowIndex * columnCount + columnIndex]
   return (

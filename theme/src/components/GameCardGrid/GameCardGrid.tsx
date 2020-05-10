@@ -18,7 +18,7 @@ type GameCardGridProps = {
 
 const PADDING = 24
 
-const getDimensions = (portrait, landscape, square) => {
+const getDimensions = (portrait?: boolean, landscape?: boolean, square?: boolean) => {
   let dimensionObject
   if (portrait) {
     dimensionObject = dimensions.portrait
@@ -41,7 +41,7 @@ type ItemDataType = {
   columnCount: number,
 }
 
-const Cell = ({ data, columnIndex, rowIndex, style }) => {
+const Cell = ({ data, columnIndex, rowIndex, style }:  {data: ItemDataType, columnIndex: number, rowIndex: number, style: React.CSSProperties}) => {
   const { children, columnCount } = data
   const content = children[rowIndex * columnCount + columnIndex]
   return (

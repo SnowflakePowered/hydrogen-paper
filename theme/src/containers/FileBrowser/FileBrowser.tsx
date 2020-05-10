@@ -38,10 +38,10 @@ type FileBrowserItemData = {
 
 const ROW_SIZE = 36;
 
-const Row = ({ index, style, data }) => {
-  const { classes, entries, selectedPath, onSelect } = (data as FileBrowserItemData)
+const Row = ({ index, style, data }: { index: number, style: React.CSSProperties, data: FileBrowserItemData })=> {
+  const { classes, entries, selectedPath, onSelect } = data;
   const item = entries[index]
-  const selectHandler = (_) => onSelect?.(item)
+  const selectHandler = () => onSelect?.(item)
   return (
     <TableRow hover={true} selected={selectedPath == item.fullPath}
       component="div" className={classes.row} style={style}

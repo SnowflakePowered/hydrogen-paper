@@ -30,7 +30,7 @@ const ImageCard: React.FunctionComponent<ImageCardProps & StyleProps> = ({ class
             <div className={classes.imageContainer}>
               {image ?
                 <ProgressiveImage delay={75} src={image} placeholder="">
-                  {(src, loading) =>
+                  {(src: string, loading: boolean) =>
                     loading ? <PhotoIcon color='disabled' />
                       : <img className={clsx(classes.image, {
                         [classes.imageLoaded]: loaded
