@@ -12843,6 +12843,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"moment@npm:^2.25.3":
+  version: 2.25.3
+  resolution: "moment@npm:2.25.3"
+  checksum: 2/416971ff3c663c850d56095cbfb01a2c153ecc7f3511772c1ff7e09a7be0105e135e8227aba0b82dd058efa8747271906cebe3f75cf4a1c4b17ed1b568003103
+  languageName: node
+  linkType: hard
+
 "move-concurrently@npm:^1.0.1":
   version: 1.0.1
   resolution: "move-concurrently@npm:1.0.1"
@@ -17967,6 +17974,7 @@ resolve@^1.17.0:
     babel-loader: ^8.1.0
     clsx: ^1.1.0
     memoize-one: ^5.1.1
+    moment: ^2.25.3
     prop-types: ^15.7.2
     react: ^16.13.1
     react-dom: ^16.13.1

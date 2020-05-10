@@ -57,6 +57,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["babel-loader", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:8.1.0"],
             ["clsx", "npm:1.1.0"],
             ["memoize-one", "npm:5.1.1"],
+            ["moment", "npm:2.25.3"],
             ["prop-types", "npm:15.7.2"],
             ["react", "npm:16.13.1"],
             ["react-dom", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:16.13.1"],
@@ -16962,6 +16963,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["moment", [
+        ["npm:2.25.3", {
+          "packageLocation": "./.yarn/cache/moment-npm-2.25.3-8a0451cc46-2.zip/node_modules/moment/",
+          "packageDependencies": [
+            ["moment", "npm:2.25.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["move-concurrently", [
         ["npm:1.0.1", {
           "packageLocation": "./.yarn/cache/move-concurrently-npm-1.0.1-e1e3c7e2cf-2.zip/node_modules/move-concurrently/",
@@ -22700,6 +22710,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["babel-loader", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:8.1.0"],
             ["clsx", "npm:1.1.0"],
             ["memoize-one", "npm:5.1.1"],
+            ["moment", "npm:2.25.3"],
             ["prop-types", "npm:15.7.2"],
             ["react", "npm:16.13.1"],
             ["react-dom", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:16.13.1"],

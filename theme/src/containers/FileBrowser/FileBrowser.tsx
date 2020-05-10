@@ -9,13 +9,15 @@ import AutoSizer from 'react-virtualized-auto-sizer'
 import { FixedSizeList as List } from 'react-window'
 import { Folder as FolderIcon, InsertDriveFile as FileIcon } from '@material-ui/icons'
 import clsx from 'clsx'
-
+import moment from 'moment'
+import VoidEvent from 'support/VoidEvent'
 type FileBrowserProps = {
   entries: FileBrowserEntry[],
-  selectedPath?: string
+  selectedPath?: string,
+  onSelect?: VoidEvent<FileBrowserEntry>
 }
 
-enum FileBrowserIconType {
+export enum FileBrowserIconType {
   DIRECTORY = "directory",
   FILE = "file"
 }
@@ -28,31 +30,35 @@ export type FileBrowserEntry = {
 }
 
 type FileBrowserItemData = {
-  classes: StyleProps["classes"], 
-  entries: FileBrowserProps["entries"], 
-  selectedPath: FileBrowserProps["selectedPath"] 
+  classes: StyleProps["classes"],
+  entries: FileBrowserProps["entries"],
+  selectedPath: FileBrowserProps["selectedPath"],
+  onSelect: FileBrowserProps["onSelect"]
 }
 
 const ROW_SIZE = 36;
 
 const Row = ({ index, style, data }) => {
-  const { classes, entries, selectedPath } = (data as FileBrowserItemData)
+  const { classes, entries, selectedPath, onSelect } = (data as FileBrowserItemData)
   const item = entries[index]
+  const selectHandler = (_) => onSelect?.(item)
   return (
-    <TableRow hover={true} selected={} component="div" className={classes.row} style={style}>
+    <TableRow hover={true} selected={selectedPath == item.fullPath}
+      component="div" className={classes.row} style={style}
+      onClick={selectHandler}>
       <TableCell
-        align="left" 
+        align="left"
         className={classes.colIcon}
         key={`${index}_${item.name}_icon`}
         component="div"
         variant="body"
       >
-        {item.icon === FileBrowserIconType.DIRECTORY ? 
-          <FolderIcon fontSize="inherit" style={{transform: 'scale(1.2)'}}/> 
-          : <FileIcon fontSize="inherit" style={{transform: 'scale(1.2)'}}/>}
+        {item.icon === FileBrowserIconType.DIRECTORY ?
+          <FolderIcon fontSize="inherit" style={{ transform: 'scale(1.2)' }} />
+          : <FileIcon fontSize="inherit" style={{ transform: 'scale(1.2)' }} />}
       </TableCell>
       <TableCell
-        align="left" 
+        align="left"
         className={classes.colName}
         key={`${index}_${item.name}_name`}
         component="div"
@@ -61,27 +67,28 @@ const Row = ({ index, style, data }) => {
         {item.name}
       </TableCell>
       <TableCell
-        align="left" 
+        align="left"
         className={classes.colModified}
         key={`${index}_${item.name}_modified`}
         component="div"
         variant="body"
       >
-        {item.name}
+        {moment(item.modified).fromNow()}
       </TableCell>
     </TableRow>
   );
 };
 
-const createItemData = memoize(({ classes, entries, selectedPath }: FileBrowserItemData) => ({
+const createItemData = memoize(({ classes, entries, selectedPath, onSelect }: FileBrowserItemData) => ({
   classes,
   entries,
-  selectedPath
+  selectedPath,
+  onSelect
 }));
 
-const FileBrowser: React.FunctionComponent<FileBrowserProps & StyleProps> = ({ classes, entries, selectedPath }) => {
+const FileBrowser: React.FunctionComponent<FileBrowserProps & StyleProps> = ({ classes, entries, selectedPath, onSelect }) => {
 
-  const itemData = createItemData({classes, entries, selectedPath});
+  const itemData = createItemData({ classes, entries, selectedPath, onSelect });
 
   return (
     <div className={classes.container}>
@@ -92,10 +99,10 @@ const FileBrowser: React.FunctionComponent<FileBrowserProps & StyleProps> = ({ c
         <Table size="small" component="div" className={classes.table}>
           <TableHead component="div">
             <TableRow component="div" className={classes.row}>
-              <TableCell align="left" className={classes.colIcon}>
-                <FolderIcon fontSize="inherit" style={{opacity: 0}}/></TableCell>
-              <TableCell align="left" className={classes.colName}>Name</TableCell>
-              <TableCell align="left" className={classes.colModified}>Last Modified</TableCell>
+              <TableCell component="div" align="left" className={classes.colIcon}>
+                <FolderIcon fontSize="inherit" style={{ opacity: 0 }} /></TableCell>
+              <TableCell component="div" align="left" className={classes.colName}>Name</TableCell>
+              <TableCell component="div" align="left" style={{marginRight: '10px'}}className={classes.colModified}>Last Modified</TableCell>
             </TableRow>
           </TableHead>
           <TableBody component="div" className={classes.tbody}>
