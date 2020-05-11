@@ -29,8 +29,8 @@ const entry2: InstallableEntry[] = [{
     artifacts: ["my file.nes"]
 }]
 
-const fakeEntries: InstallableEntry[] = [...Array(100)].map((x, i) => entry[0]);
-const fakeEntries2: InstallableEntry[] = [...Array(500)].map((x, i) => entry2[0]);
+const fakeEntries: InstallableEntry[] = [...Array(100)].map((x, i) => Object.assign({}, entry[0]));
+const fakeEntries2: InstallableEntry[] = [...Array(500)].map((x, i) => Object.assign({}, entry2[0]));
 
 const Story = withStyles(styles)(({ classes }) => {
     const [swap, setSwap] = useState(false)

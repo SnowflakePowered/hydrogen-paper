@@ -2547,6 +2547,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-hook/debounce@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "@react-hook/debounce@npm:2.0.4"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 2/2a0c5e093c20d9d7fe934fa77836670978f06a2fa91d3a91f5c2a0c37a84db2bb7c0349a7e560594d3aff4b2d4f97f1b9674f361376df2873b986b71d4704ef3
+  languageName: node
+  linkType: hard
+
 "@sindresorhus/is@npm:^2.1.0":
   version: 2.1.1
   resolution: "@sindresorhus/is@npm:2.1.1"
@@ -10211,6 +10220,13 @@ fsevents@^1.2.7:
   version: 1.10.0
   resolution: "immer@npm:1.10.0"
   checksum: 2/9cec946ed092e0a9e5c33789e3bdddce2b1831ddb17eaade00be032ea5dcbb157a674e18e3050c84b451023ec9060a6ccc0f92ed54f637733ee410d81d0da8b9
+  languageName: node
+  linkType: hard
+
+"immer@npm:^6.0.5":
+  version: 6.0.5
+  resolution: "immer@npm:6.0.5"
+  checksum: 2/9d62879a3c734b3340a76d3d15ece884c833172c2a6826bb43d9ed3876f67cd649444c51ff8a05b8a2a6c472582568af025e5ab652b6bc01a9b200573554e6b0
   languageName: node
   linkType: hard
 
@@ -17955,6 +17971,7 @@ resolve@^1.17.0:
     "@babel/core": ^7.9.6
     "@material-ui/core": ^4.9.12
     "@material-ui/icons": ^4.9.1
+    "@react-hook/debounce": ^2.0.4
     "@storybook/addon-actions": 6.0.0-beta.2
     "@storybook/addon-links": 6.0.0-beta.2
     "@storybook/addons": 6.0.0-beta.2
@@ -17973,6 +17990,7 @@ resolve@^1.17.0:
     "@yarnpkg/pnpify": ^2.0.0-rc.22
     babel-loader: ^8.1.0
     clsx: ^1.1.0
+    immer: ^6.0.5
     memoize-one: ^5.1.1
     moment: ^2.25.3
     prop-types: ^15.7.2

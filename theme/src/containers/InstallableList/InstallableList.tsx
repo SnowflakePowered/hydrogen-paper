@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useDebounce } from '@react-hook/debounce'
 import memoize from 'memoize-one'
 
 import { withStyles, Checkbox, Typography, Button, ListItem } from '@material-ui/core'
@@ -11,6 +12,8 @@ import { GetApp as DownloadIcon } from '@material-ui/icons'
 import clsx from 'clsx'
 import moment from 'moment'
 import VoidEvent from 'support/VoidEvent'
+import { SearchBarEvent } from 'support/ComponentEvents/SearchBarEvent'
+import produce from 'immer'
 
 type InstallableListProps = {
   entries?: InstallableEntry[],
@@ -29,7 +32,6 @@ const ROW_SIZE = 80;
 
 const InstallableListItem: React.FunctionComponent<InstallableListItemProps & StyleProps> = ({ classes, checked, installer, title, artifacts, onChange }) => {
   const changeHandler = (_: any, checked: boolean) => onChange?.(checked)
-
   return (
     <ListItem button className={classes.item} onClick={() => changeHandler(undefined, !checked)}>
       <div>
@@ -53,16 +55,20 @@ export type InstallableEntry = {
 export type InstallableListItemData = {
   classes: StyleProps["classes"],
   entries: InstallableEntry[],
-  checked: { [index: number]: boolean },
-  onChecked: (index: number, state: boolean) => void,
+  checked: Map<InstallableEntry, boolean>,
+  onChecked: (index: InstallableEntry, state: boolean) => void,
+  searchQuery: string,
 }
 
-const createItemData = memoize(({ classes, entries, checked, onChecked }: InstallableListItemData) => ({
+const createItemData = memoize(({ classes, entries, checked, onChecked, searchQuery }: InstallableListItemData) => ({
   classes,
   entries,
   checked,
   onChecked,
+  searchQuery,
 }));
+
+const showInSearch = (title: string | undefined, searchQuery: string) => !!(searchQuery === "" || title?.toUpperCase().includes(searchQuery?.toUpperCase()))
 
 const Row = ({ index, style, data }: { index: number, style: React.CSSProperties, data: InstallableListItemData }) => {
   const { classes, entries, checked, onChecked } = data;
@@ -71,8 +77,8 @@ const Row = ({ index, style, data }: { index: number, style: React.CSSProperties
     <div style={style}>
       <InstallableListItem 
         classes={classes} 
-        checked={!!checked[index]} 
-        onChange={check => onChecked(index, check)}
+        checked={!!checked.get(item) ?? false} 
+        onChange={check => onChecked(item, check)}
         installer={item.installer}
         title={item.title}
         artifacts={item.artifacts}/>
@@ -80,25 +86,32 @@ const Row = ({ index, style, data }: { index: number, style: React.CSSProperties
   )
 }
 
+const getCheckedEntries = (checked: Map<InstallableEntry, boolean>) => {
+  const checkedEntries = []
+  for (const [installable, check] of checked.entries()) {
+    if (check) checkedEntries.push(installable)
+  }
+  return checkedEntries
+}
+
 const InstallableList: React.FunctionComponent<InstallableListProps & StyleProps> = ({ classes, entries, onEntriesInstall }) => {
-  const [ checked, setChecked ] = useState<{[index: number]: boolean}>({})
-  const checkedHandler = (index: number, check: boolean) => setChecked({...checked, [index]: check}) 
-  const itemData = createItemData({ classes, entries: entries ?? [], onChecked: checkedHandler, checked});
+  const [ checked, setChecked ] = useState<Map<InstallableEntry, boolean>>(new Map())
+  const [ searchQuery, setSearchQuery ] = useDebounce<string>("", 500)
+  const filteredEntries: InstallableEntry[] = entries?.filter((value) => showInSearch(value.title, searchQuery)) ?? []
+  const searchHandler = (event: SearchBarEvent) => setSearchQuery(event.searchQuery)
+  const checkedHandler = (item: InstallableEntry, check: boolean) => setChecked(produce(checked, next => next.set(item, check))) 
+  const itemData = createItemData({ classes, entries: filteredEntries, onChecked: checkedHandler, checked, searchQuery });
   
-  const installHandler = () => onEntriesInstall?.(Object.entries(checked).flatMap((value) => {
-    if (!value[1]) return []
-    const index = Number.parseInt(value[0], 10)
-    return entries ? [entries[index]] : []
-  }))
+  const installHandler = () => onEntriesInstall?.(getCheckedEntries(checked))
   
   useEffect(() => {
-    setChecked({})
+    setChecked(produce(checked, next => next.clear()))
   }, [entries])
 
   return (
     <div className={classes.container}>
       <SubsectionHeader title="Installable Games" className={classes.subsectionHeader}>
-        <SearchBar />
+        <SearchBar onSearch={searchHandler}/>
       </SubsectionHeader>
       <div className={classes.buttonContainer}>
         <Button onClick={installHandler} startIcon={<DownloadIcon/>}>Install Selected</Button>
@@ -109,9 +122,10 @@ const InstallableList: React.FunctionComponent<InstallableListProps & StyleProps
                 <List
                   height={height}
                   width={width}
-                  itemCount={entries?.length ?? 0}
+                  itemCount={filteredEntries.length}
                   itemSize={ROW_SIZE}
                   itemData={itemData}
+                  overscanCount={6}
                 >
                   {Row}
                 </List>

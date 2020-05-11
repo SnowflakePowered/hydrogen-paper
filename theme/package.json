@@ -5,10 +5,12 @@
   "dependencies": {
     "@material-ui/core": "^4.9.12",
     "@material-ui/icons": "^4.9.1",
+    "@react-hook/debounce": "^2.0.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^10.0.4",
     "@testing-library/user-event": "^10.1.0",
     "clsx": "^1.1.0",
+    "immer": "^6.0.5",
     "memoize-one": "^5.1.1",
     "moment": "^2.25.3",
     "prop-types": "^15.7.2",
