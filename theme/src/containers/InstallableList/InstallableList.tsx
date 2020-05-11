@@ -25,13 +25,13 @@ type InstallableListItemProps = {
   onChange?: (checked: boolean) => void
 }
 
-const ROW_SIZE = 64;
+const ROW_SIZE = 72;
 
 const InstallableListItem: React.FunctionComponent<InstallableListItemProps & StyleProps> = ({ classes, checked, installer, title, artifacts, onChange }) => {
   const changeHandler = (_: any, checked: boolean) => onChange?.(checked)
 
   return (
-    <div className={classes.item}>
+    <div className={classes.item} onClick={() => changeHandler(undefined, !checked)}>
       <div>
         <Typography className={classes.installableTitle}>{title}</Typography>
         <Typography className={classes.installableSubtitle}>Installable with <span className={classes.installerText}>{installer}</span></Typography>
