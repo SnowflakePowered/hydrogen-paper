@@ -1,5 +1,4 @@
-import { WithStyles, createStyles } from '@material-ui/core/styles'
-import { common, grey } from '@material-ui/core/colors'
+import { WithStyles, createStyles, makeStyles } from '@material-ui/core/styles'
 export type StyleProps = WithStyles<typeof styles>
 
 export const styles = createStyles({
@@ -22,3 +21,6 @@ export const styles = createStyles({
       alignItems: 'center',
   }
 })
+
+export const useStyles = makeStyles(styles)
+export default useStyles

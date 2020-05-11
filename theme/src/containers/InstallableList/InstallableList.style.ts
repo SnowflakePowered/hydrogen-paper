@@ -1,4 +1,4 @@
-import { WithStyles, createStyles } from '@material-ui/core/styles'
+import { WithStyles, createStyles, makeStyles } from '@material-ui/core/styles'
 import { grey, common } from '@material-ui/core/colors'
 export type StyleProps = WithStyles<typeof styles>
 
@@ -43,3 +43,6 @@ export const styles = createStyles({
         color: grey[600],
     }
 })
+
+export const useStyles = makeStyles(styles)
+export default useStyles

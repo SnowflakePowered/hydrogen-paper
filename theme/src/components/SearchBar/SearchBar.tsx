@@ -1,8 +1,8 @@
 import React from 'react'
-import { FormControl, InputBase, withStyles } from '@material-ui/core'
+import { FormControl, InputBase } from '@material-ui/core'
 import { Search as SearchIcon } from '@material-ui/icons'
 
-import { styles, StyleProps } from './SearchBar.style'
+import useStyles from './SearchBar.style'
 import { SearchBarEvent } from 'support/ComponentEvents/SearchBarEvent'
 
 type SearchBarEventHandler = (e: SearchBarEvent) => void
@@ -12,23 +12,26 @@ type SearchBarProps = {
   onSearch?: SearchBarEventHandler
 }
 
-const handleSearch: (eventHandler?: SearchBarEventHandler) => ChangeEventHandler = 
-  (eventHandler) => (event) => { eventHandler?.({searchQuery: event.target.value}) }
+const handleSearch: (eventHandler?: SearchBarEventHandler) => ChangeEventHandler =
+  (eventHandler) => (event) => { eventHandler?.({ searchQuery: event.target.value }) }
 
-const SearchBar: React.SFC<SearchBarProps & StyleProps> = ({ classes, tagline, onSearch }) => (
-  <div className={classes.barContainer}>
-    <SearchIcon 
-      className={classes.searchIcon}
-    />
-    <FormControl>
-      <InputBase
+const SearchBar: React.SFC<SearchBarProps> = ({ tagline, onSearch }) => {
+  const classes = useStyles()
+  return (
+    <div className={classes.barContainer}>
+      <SearchIcon
+        className={classes.searchIcon}
+      />
+      <FormControl>
+        <InputBase
           inputProps={{ 'aria-label': 'search' }}
           placeholder={tagline ?? 'Search ...'}
           className={classes.inputField}
           onChange={handleSearch(onSearch)}
-      />
-    </FormControl>
-  </div>
-)
+        />
+      </FormControl>
+    </div>
+  )
+}
 
-export default withStyles(styles)(SearchBar)
+export default SearchBar

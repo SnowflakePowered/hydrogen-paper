@@ -1,10 +1,9 @@
 import React from 'react'
 import memoize from 'memoize-one'
-import { withStyles } from '@material-ui/core'
 import AutoSizer from 'react-virtualized-auto-sizer'
 import { FixedSizeGrid as Grid } from 'react-window'
 
-import { styles, StyleProps } from './GameCardGrid.style'
+import useStyles from './GameCardGrid.style'
 import GameCard from 'components/GameCard/GameCard'
 import { dimensions } from 'components/GameCard/GameCard.style'
 
@@ -64,8 +63,9 @@ const createItemData = memoize(({ children, columnCount }: ItemDataType) => ({
   columnCount,
 }));
 
-const GameCardGrid: React.FunctionComponent<GameCardGridProps & StyleProps> =
-  ({ portrait, landscape, square, children, classes }) => {
+const GameCardGrid: React.FunctionComponent<GameCardGridProps> =
+  ({ portrait, landscape, square, children }) => {
+    const classes = useStyles()
     const { BOX_WIDTH, BOX_HEIGHT } = getDimensions(portrait, landscape, square)
     return (
       <div className={classes.container}>
@@ -97,4 +97,4 @@ const GameCardGrid: React.FunctionComponent<GameCardGridProps & StyleProps> =
     )
   }
 
-export default withStyles(styles)(GameCardGrid)
+export default GameCardGrid

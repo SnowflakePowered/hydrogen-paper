@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import * as PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
-import { Paper, withStyles } from '@material-ui/core'
-import { styles, StyleProps } from 'components/ImageCard/ImageCard.styles'
+import { Paper } from '@material-ui/core'
+import useStyles from 'components/ImageCard/ImageCard.styles'
 import PhotoIcon from '@material-ui/icons/Photo'
 import clsx from 'clsx'
 import ProgressiveImage from 'react-progressive-image'
@@ -15,7 +15,8 @@ type ImageCardProps = {
   className?: string,
 }
 
-const ImageCard: React.FunctionComponent<ImageCardProps & StyleProps> = ({ classes, image, elevation, height, width, className }) => {
+const ImageCard: React.FunctionComponent<ImageCardProps> = ({ image, elevation, height, width, className }) => {
+  const classes = useStyles()
   const [loaded, setLoaded] = useState(false)
   const setLoadedTrue = () => setLoaded(true)
   return (
@@ -53,4 +54,4 @@ ImageCard.propTypes = {
   elevation: PropTypes.number
 }
 
-export default withStyles(styles)(ImageCard)
+export default ImageCard

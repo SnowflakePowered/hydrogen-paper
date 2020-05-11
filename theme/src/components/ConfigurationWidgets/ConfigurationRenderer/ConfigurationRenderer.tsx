@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { WithStyles, createStyles, withStyles } from '@material-ui/core'
+import { createStyles, makeStyles } from '@material-ui/core'
 
 type ConfigurationRendererProps = {
   name: string,
@@ -11,19 +11,22 @@ const styles = createStyles({
   container: {}
 })
 
-type StyleProps = WithStyles<typeof styles>
+const useStyles = makeStyles(styles)
 
 // export type WidgetChildrenProps = {
 //   onValueChange?: (e: ConfigurationValueChangeEvent) => void
 // }
 
-const ConfigurationRenderer: React.FunctionComponent<ConfigurationRendererProps & StyleProps>
- = ({classes}) => (
-  <div className={classes.container}>
-   {
+const ConfigurationRenderer: React.FunctionComponent<ConfigurationRendererProps>
+  = () => {
+    const classes = useStyles()
+    return (
+      <div className={classes.container}>
+        {
 
-   }
-  </div>
-)
+        }
+      </div>
+    )
+  }
 
-export default withStyles(styles)(ConfigurationRenderer)
+export default ConfigurationRenderer

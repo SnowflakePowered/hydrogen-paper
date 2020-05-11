@@ -1,30 +1,32 @@
 import React from 'react'
 import GamePlayButton from 'components/GamePlayButton/GamePlayButton'
-import { styles, StyleProps } from './GamePlayButtonHover.style'
-import { withStyles } from '@material-ui/core'
+import useStyles from './GamePlayButtonHover.style'
 import clsx from 'clsx'
 
 type MouseEventHandler = (event: React.MouseEvent<{}>) => void
 
 type GamePlayButtonProps = {
-    onClick?: MouseEventHandler,
-    onButtonClick?: MouseEventHandler,
-    loading?: boolean,
-    className?: string,
+  onClick?: MouseEventHandler,
+  onButtonClick?: MouseEventHandler,
+  loading?: boolean,
+  className?: string,
 }
 
-const onlyButtonEvent : (onButtonClick?: MouseEventHandler) => (event: React.MouseEvent<{}>) => void = (onButtonClick) => event => {
+const onlyButtonEvent: (onButtonClick?: MouseEventHandler) => (event: React.MouseEvent<{}>) => void = (onButtonClick) => event => {
   onButtonClick?.(event)
   event.stopPropagation()
 }
 
-const GamePlayButtonHover: React.SFC<GamePlayButtonProps & StyleProps> = ({classes, onClick, onButtonClick, loading, className}) => (
+const GamePlayButtonHover: React.FunctionComponent<GamePlayButtonProps> = ({ onClick, onButtonClick, loading, className }) => {
+  const classes = useStyles()
+  return (
     <div className={clsx(classes.hoverContainer, className)}
       onClick={onClick}>
       <div className={classes.playButton}>
-          <GamePlayButton onClick={onlyButtonEvent(onButtonClick)} loading={loading}/>
+        <GamePlayButton onClick={onlyButtonEvent(onButtonClick)} loading={loading} />
       </div>
     </div>
   )
+}
 
-export default withStyles(styles)(GamePlayButtonHover)
+export default GamePlayButtonHover

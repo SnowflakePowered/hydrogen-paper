@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
-import { Typography, withStyles } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 
-import { styles, StyleProps } from './GamePlate.style'
+import useStyles from './GamePlate.style'
 import GamePlayButtonHover from 'components/GamePlayButtonHover/GamePlayButtonHover'
 import ImageCard from 'components/ImageCard/ImageCard'
 
@@ -38,7 +38,8 @@ type NoTitleGamePlateProps = {
 type GamePlateProps = (NoTitleGamePlateProps | ShowTitleGamePlateProps) & StyleProps
 
 const GamePlate: React.FunctionComponent<GamePlateProps> =
- ({ classes, size, image, title, subtitle, showTitle, onCardButtonClick, onCardClick }) => {
+ ({ size, image, title, subtitle, showTitle, onCardButtonClick, onCardClick }) => {
+   const classes = useStyles()
    const [hover, setHover] = useState(false);
    return (<div className={classes.plateContainer} style={{width: size, height: size}}>
       <div className={classes.centeredContainer}>
@@ -68,4 +69,4 @@ const GamePlate: React.FunctionComponent<GamePlateProps> =
     </div>)
  }
 
-export default withStyles(styles)(GamePlate)
+export default GamePlate

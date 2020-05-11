@@ -1,8 +1,8 @@
 import React from 'react'
 import memoize from 'memoize-one'
 
-import { withStyles, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core'
-import { styles, StyleProps } from './FileBrowser.style'
+import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core'
+import useStyles, { StyleProps } from './FileBrowser.style'
 import SubsectionHeader from 'components/SubsectionHeader/SubsectionHeader'
 import SearchBar from 'components/SearchBar/SearchBar'
 import AutoSizer from 'react-virtualized-auto-sizer'
@@ -86,8 +86,8 @@ const createItemData = memoize(({ classes, entries, selectedPath, onSelect }: Fi
   onSelect
 }));
 
-const FileBrowser: React.FunctionComponent<FileBrowserProps & StyleProps> = ({ classes, entries, selectedPath, onSelect }) => {
-
+const FileBrowser: React.FunctionComponent<FileBrowserProps> = ({ entries, selectedPath, onSelect }) => {
+  const classes = useStyles()
   const itemData = createItemData({ classes, entries, selectedPath, onSelect });
 
   return (
@@ -126,4 +126,4 @@ const FileBrowser: React.FunctionComponent<FileBrowserProps & StyleProps> = ({ c
   )
 }
 
-export default withStyles(styles)(FileBrowser)
+export default FileBrowser

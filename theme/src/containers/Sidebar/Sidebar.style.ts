@@ -1,4 +1,4 @@
-import { WithStyles, createStyles } from '@material-ui/core/styles'
+import { WithStyles, createStyles, makeStyles } from '@material-ui/core/styles'
 import { common } from '@material-ui/core/colors'
 export type StyleProps = WithStyles<typeof styles>
 
@@ -54,3 +54,6 @@ export const styles = createStyles({
         textTransform: 'none'
     }
 })
+
+export const useStyles = makeStyles(styles)
+export default useStyles

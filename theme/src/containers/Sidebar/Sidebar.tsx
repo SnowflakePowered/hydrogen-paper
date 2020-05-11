@@ -1,9 +1,8 @@
 import React from 'react'
-import { withStyles, List, ListSubheader, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Button } from '@material-ui/core'
+import { List, ListSubheader, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Button } from '@material-ui/core'
 import { Add as AddIcon } from '@material-ui/icons'
-import { styles, StyleProps } from './Sidebar.style'
+import useStyles from './Sidebar.style'
 import TopNavigation from 'containers/TopNavigation/TopNavigation'
-
 import clsx from 'clsx'
 
 export type PlatformId = string
@@ -30,13 +29,15 @@ type ComponentProps = {
 } & React.ComponentPropsWithoutRef<typeof TopNavigation>
 
 
-const Sidebar: React.FunctionComponent<ComponentProps & StyleProps>
-  = ({ classes, platforms, collections,
+const Sidebar: React.FunctionComponent<ComponentProps>
+  = ({ platforms, collections,
     onPlatformSelect, onCollectionSelect,
     selectedPlatform, selectedCollection,
     onForward, onBackward, onSettings,
     hideCollection,
-  }) => (
+  }) => {
+    const classes = useStyles()
+    return (
       <div className={classes.sidebarContainer}>
         <div className={classes.topNavigationContainer}>
           <TopNavigation className={classes.topNavigation}
@@ -54,13 +55,13 @@ const Sidebar: React.FunctionComponent<ComponentProps & StyleProps>
                     <IconButton className={classes.button}>
                       <AddIcon />
                     </IconButton>
-                      {/* <Button
+                    {/* <Button
                         className={classes.button}
                         startIcon={<AddIcon />}
                       >
                         Add Game
                       </Button> */}
-                    </ListItemSecondaryAction>
+                  </ListItemSecondaryAction>
                   : <></>
                 }
               </ListSubheader>}
@@ -105,5 +106,6 @@ const Sidebar: React.FunctionComponent<ComponentProps & StyleProps>
         </div>
       </div>
     )
+  }
 
-export default withStyles(styles)(Sidebar)
+export default Sidebar

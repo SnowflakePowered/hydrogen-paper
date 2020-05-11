@@ -1,6 +1,6 @@
 import React from 'react'
-import { withStyles, IconButton } from '@material-ui/core'
-import { styles, StyleProps } from './NavigationButtons.style'
+import { IconButton } from '@material-ui/core'
+import useStyles from './NavigationButtons.style'
 import { ArrowForward, ArrowBack } from '@material-ui/icons'
 import clsx from 'clsx'
 type ComponentProps = {
@@ -9,16 +9,19 @@ type ComponentProps = {
   className?: string
 }
 
-const NavigationButtons: React.FunctionComponent<ComponentProps & StyleProps> =
-  ({ classes, className, onBackward, onForward }) => (
-    <div className={clsx(classes.buttonContainer, className)}>
-      <IconButton onClick={onBackward} className={classes.buttons}>
-        <ArrowBack />
-      </IconButton>
-      <IconButton onClick={onForward} className={classes.buttons}>
-        <ArrowForward />
-      </IconButton>
-    </div>
-  )
+const NavigationButtons: React.FunctionComponent<ComponentProps> =
+  ({ className, onBackward, onForward }) => {
+    const classes = useStyles()
+    return (
+      <div className={clsx(classes.buttonContainer, className)}>
+        <IconButton onClick={onBackward} className={classes.buttons}>
+          <ArrowBack />
+        </IconButton>
+        <IconButton onClick={onForward} className={classes.buttons}>
+          <ArrowForward />
+        </IconButton>
+      </div>
+    )
+  }
 
-export default withStyles(styles)(NavigationButtons)
+export default NavigationButtons

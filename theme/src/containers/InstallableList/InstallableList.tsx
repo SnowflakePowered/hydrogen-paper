@@ -3,7 +3,7 @@ import { useDebounce } from '@react-hook/debounce'
 import memoize from 'memoize-one'
 
 import { withStyles, Checkbox, Typography, Button, ListItem } from '@material-ui/core'
-import { styles, StyleProps } from './InstallableList.style'
+import useStyles, { StyleProps } from './InstallableList.style'
 import SubsectionHeader from 'components/SubsectionHeader/SubsectionHeader'
 import SearchBar from 'components/SearchBar/SearchBar'
 import AutoSizer from 'react-virtualized-auto-sizer'
@@ -94,7 +94,8 @@ const getCheckedEntries = (checked: Map<InstallableEntry, boolean>) => {
   return checkedEntries
 }
 
-const InstallableList: React.FunctionComponent<InstallableListProps & StyleProps> = ({ classes, entries, onEntriesInstall }) => {
+const InstallableList: React.FunctionComponent<InstallableListProps> = ({ entries, onEntriesInstall }) => {
+  const classes = useStyles()
   const [ checked, setChecked ] = useState<Map<InstallableEntry, boolean>>(new Map())
   const [ searchQuery, setSearchQuery ] = useDebounce<string>("", 500)
   const filteredEntries: InstallableEntry[] = entries?.filter((value) => showInSearch(value.title, searchQuery)) ?? []
@@ -136,4 +137,4 @@ const InstallableList: React.FunctionComponent<InstallableListProps & StyleProps
   )
 }
 
-export default withStyles(styles)(InstallableList)
+export default InstallableList

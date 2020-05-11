@@ -1,8 +1,7 @@
 import React from 'react'
 import memoize from 'memoize-one'
 
-import { styles, StyleProps } from './GamePlateGrid.style'
-import { withStyles } from '@material-ui/core'
+import useStyles from './GamePlateGrid.style'
 import AutoSizer from 'react-virtualized-auto-sizer'
 import { FixedSizeGrid as Grid } from 'react-window'
 import GamePlate from 'components/GamePlate/GamePlate'
@@ -35,8 +34,9 @@ const createItemData = memoize(({ children, columnCount }: ItemDataType) => ({
   columnCount,
 }))
 
-const GamePlateGrid: React.FunctionComponent<GamePlateGridProps & StyleProps> =
-  ({ size, children, classes }) => {
+const GamePlateGrid: React.FunctionComponent<GamePlateGridProps> =
+  ({ size, children }) => {
+    const classes = useStyles()
     return (
       <div className={classes.container}>
         <div className={classes.autoSizerContainer}>
@@ -69,4 +69,4 @@ const GamePlateGrid: React.FunctionComponent<GamePlateGridProps & StyleProps> =
     )
   }
 
-export default withStyles(styles)(GamePlateGrid)
+export default GamePlateGrid
