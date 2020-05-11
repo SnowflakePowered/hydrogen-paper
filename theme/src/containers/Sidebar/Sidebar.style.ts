@@ -21,8 +21,12 @@ export const styles = createStyles({
         display: 'grid',
         gridTemplateColumns: '1fr',
         gridTemplateRows: '3fr 2fr',
-        gridTemplateAreas: '"PlatformsList" "CollectionsList"',
+        gridTemplateAreas: `"PlatformsList" 
+                            "CollectionsList"`,
         rowGap: '10px',
+    },
+    listContainerNoCollection: {
+        gridTemplateRows: '1fr 0px',
     },
     platformsList: {
         position: 'relative',

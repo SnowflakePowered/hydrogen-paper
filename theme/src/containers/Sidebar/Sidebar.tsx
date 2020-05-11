@@ -4,6 +4,8 @@ import { Add as AddIcon } from '@material-ui/icons'
 import { styles, StyleProps } from './Sidebar.style'
 import TopNavigation from 'containers/TopNavigation/TopNavigation'
 
+import clsx from 'clsx'
+
 export type PlatformId = string
 export type CollectionId = string
 
@@ -24,6 +26,7 @@ type ComponentProps = {
   onCollectionSelect?: (collectionId: CollectionId) => void
   selectedPlatform?: PlatformId,
   selectedCollection?: CollectionId,
+  hideCollection?: boolean,
 } & React.ComponentPropsWithoutRef<typeof TopNavigation>
 
 
@@ -32,6 +35,7 @@ const Sidebar: React.FunctionComponent<ComponentProps & StyleProps>
     onPlatformSelect, onCollectionSelect,
     selectedPlatform, selectedCollection,
     onForward, onBackward, onSettings,
+    hideCollection,
   }) => (
       <div className={classes.sidebarContainer}>
         <div className={classes.topNavigationContainer}>
@@ -39,7 +43,7 @@ const Sidebar: React.FunctionComponent<ComponentProps & StyleProps>
             onForward={onForward} onBackward={onBackward}
             onSettings={onSettings} />
         </div>
-        <div className={classes.listContainer}>
+        <div className={clsx(classes.listContainer, hideCollection && classes.listContainerNoCollection)}>
           {/* Extract into PlatformsList */}
           <List
             subheader={

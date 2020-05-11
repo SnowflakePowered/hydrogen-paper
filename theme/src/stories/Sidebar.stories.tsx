@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { withStyles, createStyles } from '@material-ui/core'
 import Sidebar, { SelectablePlatform, SelectableCollection } from 'containers/Sidebar/Sidebar'
-import { action } from '@storybook/addon-actions'
 
 export default {
     title: 'Sidebar',
@@ -99,4 +98,29 @@ const SidebarStory = withStyles(styles)(({ classes }) => {
     )
 })
 
+const HideCollectionSidebarStory = withStyles(styles)(({ classes }) => {
+    const [selectedPlatform, setSelectedPlatform] = useState<string>();
+    const [selectedCollection, setSelectedCollection] = useState<string>();
+
+    return (
+        <div className={classes.container}>
+            <Sidebar platforms={platforms}
+                collections={collections}
+                selectedPlatform={selectedPlatform}
+                selectedCollection={selectedCollection}
+                hideCollection={true}
+                onPlatformSelect={platformId => {
+                    setSelectedCollection(undefined)
+                    setSelectedPlatform(platformId)
+                }}
+                onCollectionSelect={collectionId => {
+                    setSelectedPlatform(undefined)
+                    setSelectedCollection(collectionId)
+                }}
+            />
+        </div>
+    )
+})
+
 export const Default = () => <SidebarStory />
+export const HideCollection = () => <HideCollectionSidebarStory />
