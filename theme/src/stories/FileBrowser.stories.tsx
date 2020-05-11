@@ -29,7 +29,7 @@ const files: FileBrowserEntry[] = [{
     fullPath: "C:\\MyPath",
 }]
 
-const fakeEntries: FileBrowserEntry[] = [...Array(1000)].map((x, i) => files[i % 2]);
+const fakeEntries: FileBrowserEntry[] = [...Array(1000)].map((x, i) => Object.assign({}, files[i % 2]))
 const Story = withStyles(styles)(({ classes }) => {
     return (
         <div className={classes.container}>

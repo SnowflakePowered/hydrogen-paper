@@ -1,6 +1,7 @@
 import React from 'react'
 import memoize from 'memoize-one'
-
+import { useDebounce } from '@react-hook/debounce'
+import { SearchBarEvent } from 'support/ComponentEvents/SearchBarEvent'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core'
 import useStyles, { StyleProps } from './FileBrowser.style'
 import SubsectionHeader from 'components/SubsectionHeader/SubsectionHeader'
@@ -86,14 +87,19 @@ const createItemData = memoize(({ classes, entries, selectedPath, onSelect }: Fi
   onSelect
 }));
 
+const showInSearch = (title: string | undefined, searchQuery: string) => !!(searchQuery === "" || title?.toUpperCase().includes(searchQuery?.toUpperCase()))
+
 const FileBrowser: React.FunctionComponent<FileBrowserProps> = ({ entries, selectedPath, onSelect }) => {
   const classes = useStyles()
-  const itemData = createItemData({ classes, entries, selectedPath, onSelect });
+  const [ searchQuery, setSearchQuery ] = useDebounce<string>("", 500)
+  const searchHandler = (event: SearchBarEvent) => setSearchQuery(event.searchQuery)
+  const filteredEntries: FileBrowserEntry[] = entries?.filter((value) => showInSearch(value.name, searchQuery)) ?? []
+  const itemData = createItemData({ classes, entries: filteredEntries, selectedPath, onSelect });
 
   return (
     <div className={classes.container}>
       <SubsectionHeader title="File Browser" className={classes.subsectionHeader}>
-        <SearchBar />
+        <SearchBar onSearch={searchHandler}/>
       </SubsectionHeader>
       <div className={classes.tableContainer}>
         <Table size="small" component="div" className={classes.table}>
@@ -111,7 +117,7 @@ const FileBrowser: React.FunctionComponent<FileBrowserProps> = ({ entries, selec
                 <List
                   height={height}
                   width={width}
-                  itemCount={entries?.length ?? 0}
+                  itemCount={filteredEntries.length}
                   itemSize={ROW_SIZE}
                   itemData={itemData}
                 >

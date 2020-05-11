@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDebounce } from '@react-hook/debounce'
 import memoize from 'memoize-one'
 
-import { withStyles, Checkbox, Typography, Button, ListItem } from '@material-ui/core'
+import { Checkbox, Typography, Button, ListItem } from '@material-ui/core'
 import useStyles, { StyleProps } from './InstallableList.style'
 import SubsectionHeader from 'components/SubsectionHeader/SubsectionHeader'
 import SearchBar from 'components/SearchBar/SearchBar'
@@ -68,7 +68,6 @@ const createItemData = memoize(({ classes, entries, checked, onChecked, searchQu
   searchQuery,
 }));
 
-const showInSearch = (title: string | undefined, searchQuery: string) => !!(searchQuery === "" || title?.toUpperCase().includes(searchQuery?.toUpperCase()))
 
 const Row = ({ index, style, data }: { index: number, style: React.CSSProperties, data: InstallableListItemData }) => {
   const { classes, entries, checked, onChecked } = data;
@@ -93,6 +92,7 @@ const getCheckedEntries = (checked: Map<InstallableEntry, boolean>) => {
   }
   return checkedEntries
 }
+const showInSearch = (title: string | undefined, searchQuery: string) => !!(searchQuery === "" || title?.toUpperCase().includes(searchQuery?.toUpperCase()))
 
 const InstallableList: React.FunctionComponent<InstallableListProps> = ({ entries, onEntriesInstall }) => {
   const classes = useStyles()
