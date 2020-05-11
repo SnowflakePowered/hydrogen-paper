@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import memoize from 'memoize-one'
 
-import { withStyles, Checkbox, Typography, Button } from '@material-ui/core'
+import { withStyles, Checkbox, Typography, Button, ListItem } from '@material-ui/core'
 import { styles, StyleProps } from './InstallableList.style'
 import SubsectionHeader from 'components/SubsectionHeader/SubsectionHeader'
 import SearchBar from 'components/SearchBar/SearchBar'
@@ -25,13 +25,13 @@ type InstallableListItemProps = {
   onChange?: (checked: boolean) => void
 }
 
-const ROW_SIZE = 72;
+const ROW_SIZE = 80;
 
 const InstallableListItem: React.FunctionComponent<InstallableListItemProps & StyleProps> = ({ classes, checked, installer, title, artifacts, onChange }) => {
   const changeHandler = (_: any, checked: boolean) => onChange?.(checked)
 
   return (
-    <div className={classes.item} onClick={() => changeHandler(undefined, !checked)}>
+    <ListItem button className={classes.item} onClick={() => changeHandler(undefined, !checked)}>
       <div>
         <Typography className={classes.installableTitle}>{title}</Typography>
         <Typography className={classes.installableSubtitle}>Installable with <span className={classes.installerText}>{installer}</span></Typography>
@@ -40,7 +40,7 @@ const InstallableListItem: React.FunctionComponent<InstallableListItemProps & St
       <div>
         <Checkbox checked={checked} onChange={changeHandler}/>
       </div>
-    </div>
+    </ListItem>
   )
 }
 
