@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDebounce } from '@react-hook/debounce'
+import { useImmer } from 'use-immer'
 import memoize from 'memoize-one'
 
 import { Checkbox, Typography, Button, ListItem } from '@material-ui/core'
@@ -11,7 +12,6 @@ import { FixedSizeList as List } from 'react-window'
 import { GetApp as DownloadIcon } from '@material-ui/icons'
 import VoidEvent from 'support/VoidEvent'
 import { SearchBarEvent } from 'support/ComponentEvents/SearchBarEvent'
-import produce from 'immer'
 
 type InstallableListProps = {
   entries?: InstallableEntry[],
@@ -94,17 +94,16 @@ const showInSearch = (title: string | undefined, searchQuery: string) => !!(sear
 
 const InstallableList: React.FunctionComponent<InstallableListProps> = ({ entries, onEntriesInstall }) => {
   const classes = useStyles()
-  const [ checked, setChecked ] = useState<Map<InstallableEntry, boolean>>(new Map())
+  const [ checked, setChecked ] = useImmer<Map<InstallableEntry, boolean>>(new Map())
   const [ searchQuery, setSearchQuery ] = useDebounce<string>("", 500)
   const filteredEntries: InstallableEntry[] = entries?.filter((value) => showInSearch(value.title, searchQuery)) ?? []
   const searchHandler = (event: SearchBarEvent) => setSearchQuery(event.searchQuery)
-  const checkedHandler = (item: InstallableEntry, check: boolean) => setChecked(produce(checked, next => next.set(item, check))) 
+  const checkedHandler = (item: InstallableEntry, check: boolean) => setChecked(next => next.set(item, check))
   const itemData = createItemData({ classes, entries: filteredEntries, onChecked: checkedHandler, checked, searchQuery });
   
   const installHandler = () => onEntriesInstall?.(getCheckedEntries(checked))
   
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => setChecked(produce(checked, next => next.clear())), [entries])
+  useEffect(() => setChecked(next => next.clear()), [entries, setChecked])
 
   return (
     <div className={classes.container}>
