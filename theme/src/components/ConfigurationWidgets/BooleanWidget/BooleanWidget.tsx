@@ -3,7 +3,7 @@ import { Switch } from '@material-ui/core'
 
 import ConfigurationWidget, { WidgetChildrenProps }
  from 'components/ConfigurationWidgets/ConfigurationWidget/ConfigurationWidget'
-import { ConfigurationOption, ConfigurationKey } from 'support/Snowflake'
+import { ConfigurationOption } from 'support/Snowflake'
 
 type BooleanWidgetProps = {
   option: ConfigurationOption,

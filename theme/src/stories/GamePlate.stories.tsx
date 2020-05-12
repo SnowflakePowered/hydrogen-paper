@@ -9,9 +9,6 @@ export default {
 
 const SIZE = 250
 
-const GUID = "00000000-0000-0000-0000-000000000000"
-const PLATFORM_ID = "NINTENDO_NES"
-
 export const Portrait = () => <GamePlate title="Super Mario Bros."
     size={SIZE}
     image={"http://vignette2.wikia.nocookie.net/mario/images/6/60/SMBBoxart.png/revision/latest?cb=20120609143443"}

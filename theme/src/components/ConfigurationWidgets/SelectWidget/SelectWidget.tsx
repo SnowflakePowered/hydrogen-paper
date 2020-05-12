@@ -2,7 +2,7 @@ import React from 'react'
 
 import ConfigurationWidget, { WidgetChildrenProps }
  from 'components/ConfigurationWidgets/ConfigurationWidget/ConfigurationWidget'
-import { ConfigurationOption, ConfigurationKey } from 'support/Snowflake'
+import { ConfigurationOption } from 'support/Snowflake'
 import { Select, MenuItem } from '@material-ui/core'
 
 type SelectWidgetProps = {

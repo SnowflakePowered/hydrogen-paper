@@ -1,7 +1,7 @@
 import React from 'react';
 import GamePlate from 'components/GamePlate/GamePlate'
 import GamePlateGrid from 'components/GamePlateGrid/GamePlateGrid'
-import { createStyles, withStyles, WithStyles } from '@material-ui/core';
+import { createStyles, makeStyles } from '@material-ui/core/styles'
 
 export default {
     title: 'GamePlateGrid',
@@ -13,6 +13,8 @@ const styles = createStyles({
         height: 'calc(100vh - 20px)'
     }
 })
+
+const useStyles = makeStyles(styles)
 
 const SIZE = 200
 
@@ -59,8 +61,6 @@ const SquareNoTitle = (key) => <GamePlate
     image={"https://upload.wikimedia.org/wikipedia/en/d/db/NewSuperMarioBrothers.jpg"}
 />
 
-type StyleProps = WithStyles<typeof styles>
-
 const landscapeGameList = [...Array(1000)].map((x, i) => Landscape(i + 1))
 
 const mixedGameList = [...Array(1000)].map((x, i) => {
@@ -76,7 +76,8 @@ const mixedGameNoTitleList = [...Array(1000)].map((x, i) => {
     return PortraitNoTitle(i + 1);
 })
 
-const LandscapeGameGridViewStory = withStyles(styles)(({ classes }) => {
+const LandscapeGameGridViewStory = () => {
+    const classes = useStyles()
     return (
         <div className={classes.container}>
             <GamePlateGrid size={SIZE}>
@@ -85,10 +86,11 @@ const LandscapeGameGridViewStory = withStyles(styles)(({ classes }) => {
                 }
             </GamePlateGrid>
         </div>)
-})
+}
 
 
-const MixedGameGridViewStory = withStyles(styles)(({ classes }) => {
+const MixedGameGridViewStory = () => {
+    const classes = useStyles()
     return (
         <div className={classes.container}>
             <GamePlateGrid size={SIZE}>
@@ -97,11 +99,11 @@ const MixedGameGridViewStory = withStyles(styles)(({ classes }) => {
                 }
             </GamePlateGrid>
         </div>)
-})
+}
 
 
-
-const MixedGameGridViewNoTitleStory = withStyles(styles)(({ classes }) => {
+const MixedGameGridViewNoTitleStory = () => {
+    const classes = useStyles()
     return (
         <div className={classes.container}>
             <GamePlateGrid size={SIZE}>
@@ -110,7 +112,7 @@ const MixedGameGridViewNoTitleStory = withStyles(styles)(({ classes }) => {
                 }
             </GamePlateGrid>
         </div>)
-})
+}
 
 export const Default = () => <LandscapeGameGridViewStory />
 export const MixedImageSizes = () => <MixedGameGridViewStory />

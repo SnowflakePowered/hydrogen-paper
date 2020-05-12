@@ -9,7 +9,6 @@ import SearchBar from 'components/SearchBar/SearchBar'
 import AutoSizer from 'react-virtualized-auto-sizer'
 import { FixedSizeList as List } from 'react-window'
 import { Folder as FolderIcon, InsertDriveFile as FileIcon } from '@material-ui/icons'
-import clsx from 'clsx'
 import moment from 'moment'
 import VoidEvent from 'support/VoidEvent'
 type FileBrowserProps = {
@@ -44,7 +43,7 @@ const Row = ({ index, style, data }: { index: number, style: React.CSSProperties
   const item = entries[index]
   const selectHandler = () => onSelect?.(item)
   return (
-    <TableRow hover={true} selected={selectedPath == item.fullPath}
+    <TableRow hover={true} selected={selectedPath === item.fullPath}
       component="div" className={classes.row} style={style}
       onClick={selectHandler}>
       <TableCell

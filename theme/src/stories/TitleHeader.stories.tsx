@@ -2,7 +2,6 @@
 import React from 'react';
 import TitleHeader from 'components/TitleHeader/TitleHeader'
 import SearchBar from 'components/SearchBar/SearchBar'
-import { action } from '@storybook/addon-actions'
 
 export default {
     title: 'TitleHeader',

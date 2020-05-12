@@ -1,4 +1,4 @@
-import { grey, common } from '@material-ui/core/colors'
+import { common } from '@material-ui/core/colors'
 import { WithStyles, createStyles, makeStyles } from '@material-ui/core/styles'
 
 export type StyleProps = WithStyles<typeof styles>

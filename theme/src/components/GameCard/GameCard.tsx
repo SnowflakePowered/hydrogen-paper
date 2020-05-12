@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { Typography, Card, CardContent, CardMedia, withStyles } from '@material-ui/core'
-
-import GamePlayButton from 'components/GamePlayButton/GamePlayButton'
+import { Typography, Card, CardContent, CardMedia } from '@material-ui/core'
 
 import PhotoIcon from '@material-ui/icons/Photo'
 

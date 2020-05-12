@@ -2,9 +2,8 @@
 import React, { useState } from 'react';
 import InstallableList, { InstallableEntry } from 'containers/InstallableList/InstallableList'
 import { action } from '@storybook/addon-actions'
-import { createStyles, withStyles } from '@material-ui/core/styles'
+import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
-import moment from 'moment'
 
 export default {
     title: 'InstallableList',
@@ -16,6 +15,8 @@ const styles = createStyles({
         height: 'calc(100vh - 32px)'
     }
 })
+
+const useStyles = makeStyles(styles)
 
 const entry: InstallableEntry[] = [{
     installer: "Simple File Installer",
@@ -32,7 +33,8 @@ const entry2: InstallableEntry[] = [{
 const fakeEntries: InstallableEntry[] = [...Array(100)].map((x, i) => Object.assign({}, entry[0]));
 const fakeEntries2: InstallableEntry[] = [...Array(500)].map((x, i) => Object.assign({}, entry2[0]));
 
-const Story = withStyles(styles)(({ classes }) => {
+const Story = () => {
+    const classes = useStyles()
     const [swap, setSwap] = useState(false)
     return (
         <div className={classes.container}>
@@ -41,5 +43,5 @@ const Story = withStyles(styles)(({ classes }) => {
         </div>
         
     )
-})
+}
 export const Default = () => <Story/>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, ListSubheader, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Button } from '@material-ui/core'
+import { List, ListSubheader, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@material-ui/core'
 import { Add as AddIcon } from '@material-ui/icons'
 import useStyles from './Sidebar.style'
 import TopNavigation from 'containers/TopNavigation/TopNavigation'

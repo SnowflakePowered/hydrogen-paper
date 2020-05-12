@@ -1,6 +1,6 @@
 import React from 'react'
 import { TextField } from '@material-ui/core'
-import { ConfigurationOption, ConfigurationKey } from 'support/Snowflake'
+import { ConfigurationOption } from 'support/Snowflake'
 import ConfigurationWidget, { WidgetChildrenProps } from '../ConfigurationWidget/ConfigurationWidget'
 
 type StringWidgetProps = {

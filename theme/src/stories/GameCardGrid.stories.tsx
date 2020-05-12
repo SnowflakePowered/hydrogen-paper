@@ -1,7 +1,7 @@
 import React from 'react';
 import GameCard from 'components/GameCard/GameCard'
 import GameCardGrid from 'components/GameCardGrid/GameCardGrid'
-import { createStyles, withStyles, WithStyles } from '@material-ui/core';
+import { createStyles, makeStyles } from '@material-ui/core/styles'
 export default {
     title: 'GameCardGrid',
     component: GameCardGrid,
@@ -13,7 +13,7 @@ const styles = createStyles({
     }
 })
 
-type StyleProps = WithStyles<typeof styles>
+const useStyles = makeStyles(styles)
 
 const GUID = "00000000-0000-0000-0000-000000000000"
 const PLATFORM_ID = "NINTENDO_NES"
@@ -35,7 +35,8 @@ const landscapeCardNoTitle = int => (<GameCard
 const landscapeGameList = [...Array(1000)].map((x, i) => landscapeCard(i + 1))
 const landscapeGameListNoTitle = [...Array(1000)].map((x, i) => landscapeCardNoTitle(i + 1))
 
-const LandscapeGameGridViewStory = withStyles(styles)(({ classes })  => {
+const LandscapeGameGridViewStory = () => {
+    const classes = useStyles()
     return (
         <div className={classes.container}>
             <GameCardGrid landscape>
@@ -44,10 +45,10 @@ const LandscapeGameGridViewStory = withStyles(styles)(({ classes })  => {
                 }
             </GameCardGrid>
         </div>)
-})
+}
 
-
-const LandscapeGameGridViewNoTitleStory = withStyles(styles)(({ classes })  => {
+const LandscapeGameGridViewNoTitleStory = () => {
+    const classes = useStyles()
     return (
         <div className={classes.container}>
             <GameCardGrid landscape>
@@ -56,7 +57,7 @@ const LandscapeGameGridViewNoTitleStory = withStyles(styles)(({ classes })  => {
                 }
             </GameCardGrid>
         </div>)
-})
+}
 
 const portraitCard = int => (<GameCard
     key={int}
@@ -73,7 +74,8 @@ const portraitCardNoTitle = int => (<GameCard
 const portraitGameList = [...Array(1000)].map((x, i) => portraitCard(i + 1))
 const portraitGameListNoTitle = [...Array(1000)].map((x, i) => portraitCardNoTitle(i + 1))
 
-const PortraitGameGridViewStory =  withStyles(styles)(({ classes }) => {
+const PortraitGameGridViewStory = () => {
+    const classes = useStyles()
     return (
         <div className={classes.container}>
             <GameCardGrid>
@@ -82,8 +84,9 @@ const PortraitGameGridViewStory =  withStyles(styles)(({ classes }) => {
                 }
             </GameCardGrid>
         </div>)
-})
-const PortraitGameGridViewNoTitleStory =  withStyles(styles)(({ classes }) => {
+}
+const PortraitGameGridViewNoTitleStory = () => {
+    const classes = useStyles()
     return (
         <div className={classes.container}>
             <GameCardGrid>
@@ -92,7 +95,7 @@ const PortraitGameGridViewNoTitleStory =  withStyles(styles)(({ classes }) => {
                 }
             </GameCardGrid>
         </div>)
-})
+}
 
 const squareCard = int => (<GameCard
     key={int}
@@ -109,7 +112,8 @@ const squareCardNoTitle = int => (<GameCard
 const squareGameList = [...Array(1000)].map((x, i) => squareCard(i + 1))
 const squareGameListNoTitle = [...Array(1000)].map((x, i) => squareCardNoTitle(i + 1))
 
-const SquareGameGridViewStory =  withStyles(styles)(({ classes }) => {
+const SquareGameGridViewStory = () => {
+    const classes = useStyles()
 
     return (
         <div className={classes.container}>
@@ -119,9 +123,10 @@ const SquareGameGridViewStory =  withStyles(styles)(({ classes }) => {
                 }
             </GameCardGrid>
         </div>)
-})
+}
 
-const SquareGameGridViewNoTitleStory = withStyles(styles)(({ classes }) => {
+const SquareGameGridViewNoTitleStory = () => {
+    const classes = useStyles()
     return (
         <div className={classes.container}>
             <GameCardGrid square>
@@ -130,7 +135,7 @@ const SquareGameGridViewNoTitleStory = withStyles(styles)(({ classes }) => {
                 }
             </GameCardGrid>
         </div>)
-})
+}
 
 export const PortraitGrid = () => <PortraitGameGridViewStory/>
 export const PortraitGridNoTitle = () => <PortraitGameGridViewNoTitleStory/>

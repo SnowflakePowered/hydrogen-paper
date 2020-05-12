@@ -9,8 +9,6 @@ import SearchBar from 'components/SearchBar/SearchBar'
 import AutoSizer from 'react-virtualized-auto-sizer'
 import { FixedSizeList as List } from 'react-window'
 import { GetApp as DownloadIcon } from '@material-ui/icons'
-import clsx from 'clsx'
-import moment from 'moment'
 import VoidEvent from 'support/VoidEvent'
 import { SearchBarEvent } from 'support/ComponentEvents/SearchBarEvent'
 import produce from 'immer'
@@ -105,9 +103,8 @@ const InstallableList: React.FunctionComponent<InstallableListProps> = ({ entrie
   
   const installHandler = () => onEntriesInstall?.(getCheckedEntries(checked))
   
-  useEffect(() => {
-    setChecked(produce(checked, next => next.clear()))
-  }, [entries])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => setChecked(produce(checked, next => next.clear())), [entries])
 
   return (
     <div className={classes.container}>

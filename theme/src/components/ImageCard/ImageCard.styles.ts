@@ -1,4 +1,4 @@
-import { createStyles, WithStyles, makeStyles } from '@material-ui/core';
+import { createStyles, WithStyles, makeStyles } from '@material-ui/core/styles';
 
 export type StyleProps = WithStyles<typeof styles>;
 

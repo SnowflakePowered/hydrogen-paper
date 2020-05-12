@@ -8,7 +8,6 @@ import GamePlateGrid from 'components/GamePlateGrid/GamePlateGrid'
 import GamePlate from 'components/GamePlate/GamePlate'
 
 import { createStyles, withStyles } from '@material-ui/core/styles'
-import { action } from '@storybook/addon-actions'
 
 export default {
     title: 'Framing',
