@@ -1,2 +1,2 @@
-.yarn/* linguist-vendored
-.vscode/* linguist-vendored
+.yarn/**/* linguist-vendored
+.vscode/**/* linguist-vendored
