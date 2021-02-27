@@ -1,2 +1,3 @@
 .yarn/**/* linguist-vendored
 .vscode/**/* linguist-vendored
+.pnp.js linguist-vendored
