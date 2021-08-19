@@ -1,19 +1,18 @@
 {
-    "compilerOptions":{
-       "baseUrl":".",
-       "rootDir": ".",
-       "paths": {
-            "*": ["./src/*"],
-          "@/*": ["./src/*"],
-          "components/*" : [ "./src/components/*"],
-          "containers/*" : [ "./src/containers/*"],
-          "support/*" : [ "./src/support/*"],
-          "stories/*" : [ "./src/stories/*"]
-       }
-    },
-    "include":[
-       "./src",
-       "./src/*",
-       "./src/**/*"
-    ]
- }
+	"compilerOptions": {
+		"baseUrl": "./",
+		"rootDir": "./",
+		"paths": {
+			"*": ["./src/*"],
+			"@/*": ["./src/*"],
+			"components": ["./src/components"],
+			"containers": ["./src/containers"],
+			"support": ["./src/support"],
+			"stories": ["./src/stories"],
+			"components/*": ["./src/components/*"],
+			"containers/*": ["./src/containers/*"],
+			"support/*": ["./src/support/*"],
+			"stories/*": ["./src/stories/*"]
+		}
+	}
+}
