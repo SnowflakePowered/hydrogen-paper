@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch } from '@material-ui/core'
 
 import ConfigurationWidget, { WidgetChildrenProps }
- from 'components/ConfigurationWidgets/ConfigurationWidget/ConfigurationWidget'
+from 'components/ConfigurationWidgets/ConfigurationWidget/ConfigurationWidget'
 import { ConfigurationOption } from 'support/Snowflake'
 
 type BooleanWidgetProps = {
