@@ -37,6 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@babel/core", "npm:7.15.0"],
             ["@craco/craco", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:6.2.0"],
+            ["@fontsource/roboto", "npm:4.5.0"],
             ["@material-ui/core", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:4.12.3"],
             ["@material-ui/icons", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:4.11.2"],
             ["@pmmmwh/react-refresh-webpack-plugin", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:0.4.3"],
@@ -6312,6 +6313,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["js-yaml", "npm:3.13.1"],
             ["minimatch", "npm:3.0.4"],
             ["strip-json-comments", "npm:3.1.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@fontsource/roboto", [
+        ["npm:4.5.0", {
+          "packageLocation": "./.yarn/cache/@fontsource-roboto-npm-4.5.0-a43024eb09-c045f5aaad.zip/node_modules/@fontsource/roboto/",
+          "packageDependencies": [
+            ["@fontsource/roboto", "npm:4.5.0"]
           ],
           "linkType": "HARD",
         }]
@@ -27158,6 +27168,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["theme", "workspace:."],
             ["@babel/core", "npm:7.15.0"],
             ["@craco/craco", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:6.2.0"],
+            ["@fontsource/roboto", "npm:4.5.0"],
             ["@material-ui/core", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:4.12.3"],
             ["@material-ui/icons", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:4.11.2"],
             ["@pmmmwh/react-refresh-webpack-plugin", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:0.4.3"],
