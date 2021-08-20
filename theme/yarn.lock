@@ -2876,12 +2876,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-hook/debounce@npm:^2.0.5":
-  version: 2.0.5
-  resolution: "@react-hook/debounce@npm:2.0.5"
+"@react-hook/debounce@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@react-hook/debounce@npm:4.0.0"
+  dependencies:
+    "@react-hook/latest": ^1.0.2
   peerDependencies:
     react: ">=16.8"
-  checksum: 986dd4baa534bb6a93e76a3ac57fffab7935ac60ba87f70f9fb16bef4f5534dda2ec6db7c02e23b09762772b0490d1a9509b735bb87eeb1dd98a564e3b4c92bc
+  checksum: 199f944fd905b6cbeb0665e94ce49805f6a0a6f758f35862d784b87dd5c52760dcf2ce9a66abc5698f5b1418be387df5452a703812e9362d1dda0f9718a5d01d
+  languageName: node
+  linkType: hard
+
+"@react-hook/latest@npm:^1.0.2":
+  version: 1.0.3
+  resolution: "@react-hook/latest@npm:1.0.3"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 2408c9cd35c5cfa7697b6da3bc5eebef254a932ade70955074c474f23be7dd3e2f81bbba12edcc9208bd0f89c6ed366d6b11d4f6d7b1052877a0bac8f74afad4
   languageName: node
   linkType: hard
 
@@ -4398,17 +4409,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*":
-  version: 16.9.22
-  resolution: "@types/react@npm:16.9.22"
-  dependencies:
-    "@types/prop-types": "*"
-    csstype: ^2.2.0
-  checksum: 451b3647cbb1c15b589df6de4be0f7cd4cdffd22ddddfe861f59bec882bf8fd2566b5fc839fe19aa2b1aa6ceac541121983f4754657aa011caaf310482c1f74f
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:^17.0.19":
+"@types/react@npm:17.0.19":
   version: 17.0.19
   resolution: "@types/react@npm:17.0.19"
   dependencies:
@@ -8076,7 +8077,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csstype@npm:^2.2.0, csstype@npm:^2.5.2, csstype@npm:^2.5.7, csstype@npm:^2.6.7":
+"csstype@npm:^2.5.2, csstype@npm:^2.5.7, csstype@npm:^2.6.7":
   version: 2.6.9
   resolution: "csstype@npm:2.6.9"
   checksum: b1ce577f9d9b1dc96d0270450ca7b5d8711cc3a9c4a5a2b1d8d64a313337c34489ef82a49875828e716b64af6a2a9e13488c42480eb4c9c9436cf3ca2265f4fd
@@ -10076,7 +10077,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fork-ts-checker-webpack-plugin@npm:^6.0.4":
+"fork-ts-checker-webpack-plugin@npm:^6.0.4, fork-ts-checker-webpack-plugin@npm:^6.3.2":
   version: 6.3.2
   resolution: "fork-ts-checker-webpack-plugin@npm:6.3.2"
   dependencies:
@@ -19704,7 +19705,7 @@ resolve@^2.0.0-next.3:
     "@material-ui/core": ^4.12.3
     "@material-ui/icons": ^4.11.2
     "@pmmmwh/react-refresh-webpack-plugin": ^0.4.3
-    "@react-hook/debounce": ^2.0.5
+    "@react-hook/debounce": ^4.0.0
     "@storybook/addon-actions": 6.3.7
     "@storybook/addon-links": 6.3.7
     "@storybook/addons": 6.3.7
@@ -19729,6 +19730,7 @@ resolve@^2.0.0-next.3:
     craco-alias: ^3.0.1
     customize-cra: ^1.0.0
     eslint-config-react-app: ^6.0.0
+    fork-ts-checker-webpack-plugin: ^6.3.2
     immer: ^9.0.5
     memoize-one: ^5.2.1
     moment: ^2.29.1

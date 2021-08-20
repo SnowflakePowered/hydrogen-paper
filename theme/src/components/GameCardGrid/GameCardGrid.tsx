@@ -57,7 +57,6 @@ const Cell = ({ data, columnIndex, rowIndex, style }:  {data: ItemDataType, colu
   )
 }
 
-
 const createItemData = memoize(({ children, columnCount }: ItemDataType) => ({
   children,
   columnCount,

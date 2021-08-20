@@ -35,7 +35,7 @@ type NoTitleGamePlateProps = {
   onCardButtonClick?: (event: React.MouseEvent<{}>) => void
 }
 
-type GamePlateProps = (NoTitleGamePlateProps | ShowTitleGamePlateProps) & StyleProps
+type GamePlateProps = (NoTitleGamePlateProps | ShowTitleGamePlateProps)
 
 const GamePlate: React.FunctionComponent<GamePlateProps> =
  ({ size, image, title, subtitle, showTitle, onCardButtonClick, onCardClick }) => {
