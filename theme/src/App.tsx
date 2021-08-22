@@ -3,9 +3,18 @@ import logo from './logo.svg';
 import './App.css';
 import {
   useQuery,
+  makeVar,
+  useReactiveVar,
   gql
 } from "@apollo/client";
-import { Games } from 'support/Api';
+import { Games, Platforms } from 'support/Api';
+import { createStyles, makeStyles } from '@material-ui/core/styles'
+import Framing from 'containers/Framing/Framing'
+import SearchBar from 'components/SearchBar/SearchBar'
+import Sidebar, { SelectableCollection, SelectablePlatform } from 'containers/Sidebar/Sidebar'
+import TitleHeader from 'components/TitleHeader/TitleHeader'
+import GamePlateGrid from 'components/GamePlateGrid/GamePlateGrid'
+import GamePlate from 'components/GamePlate/GamePlate'
 
 const GAMES = gql`
   query Games($cursor: String) {
@@ -15,6 +24,7 @@ const GAMES = gql`
           id,
           record {
             gameId,
+            platformId,
             title,
             metadata {
               metadataId
@@ -30,33 +40,81 @@ const GAMES = gql`
   }
 `;
 
-const App = () => {
-  const { data, loading, fetchMore } = useQuery<Games>(GAMES);
-  if (loading) return <div>Loading</div>;
-  const nodes = data?.games?.edges?.map((edge) => edge.node!!);
-  
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        {
-            nodes?.map(g => <div>{g.record?.gameId}</div>)
+const PLATFORMS = gql`
+  query Platforms {
+    stone {
+      platforms {
+        platformId,
+        friendlyName,
+        metadata {
+          key
+          value
         }
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-         
-        </a>
-      </header>
+      }
+    }
+  }
+`
+
+const styles = createStyles({
+  container: {
+      height: 'calc(100vh)',
+      width: '100vw'
+  }
+})
+
+
+const SIZE = 200
+
+const useStyles = makeStyles(styles)
+const selectedPlatformVar = makeVar<string|undefined>(undefined);
+
+const App = () => {
+  const classes = useStyles()
+  const { data, loading, fetchMore } = useQuery<Games>(GAMES);
+  const { data: stonePlatforms, loading: platformsLoading, fetchMore: _ } = useQuery<Platforms>(PLATFORMS)
+  const selectedPlatform = useReactiveVar(selectedPlatformVar);
+  const platforms = stonePlatforms?.stone.platforms!;
+  const selectedPlatformData = platforms?.filter(p => p.platformId === selectedPlatform)?.[0]
+  console.log(selectedPlatformData)
+  if (loading) return <div>Loading</div>;
+  const games = data?.games?.edges?.map((edge) => edge.node!!);
+
+  const sideBar =  
+  <Sidebar 
+      platforms={platforms}
+      onPlatformSelect={platformId => selectedPlatformVar(platformId)}
+      selectedPlatform={selectedPlatform}
+  />
+
+  const titleHeader = 
+    <TitleHeader 
+      title={selectedPlatformData ? selectedPlatformData.friendlyName : "No Platform Selected" } 
+      subtitle={selectedPlatformData ? selectedPlatformData.metadata?.filter(({key}) => key === "platform_manufacturer")?.[0]?.value ?? "" : "Select a platform" }>
+      <SearchBar />
+    </TitleHeader>
+
+const gamePlates = games?.filter(g => g.record?.platformId === selectedPlatform).map(g => {
+  return (
+  <GamePlate 
+    title={g.record?.title ?? "No Title"}
+    size={SIZE}
+  />)
+}) ?? []
+
+  return (
+    <div className={classes.container}>
+        <Framing sidebar={
+          platformsLoading ? <div>Loading</div> : sideBar} 
+            titleHeader={titleHeader}>
+       
+            <GamePlateGrid size={SIZE}>
+                {
+                    gamePlates
+                }
+            </GamePlateGrid>
+        </Framing>
     </div>
-  );
+)
 }
 
 export default App;

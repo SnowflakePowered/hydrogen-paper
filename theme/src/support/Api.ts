@@ -22,6 +22,10 @@ export interface Games_games_edges_node_record {
    */
   gameId: any;
   /**
+   * The original platform or game console of the game this object represents.
+   */
+  platformId: any | null;
+  /**
    * The title of the game.
    */
   title: string | null;
@@ -78,6 +82,58 @@ export interface Games {
 
 export interface GamesVariables {
   cursor?: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: Platforms
+// ====================================================
+
+export interface Platforms_stone_platforms_metadata {
+  __typename: "StoneMetadata";
+  /**
+   * The metadata key.
+   */
+  key: string;
+  /**
+   * The metadata value.
+   */
+  value: string;
+}
+
+export interface Platforms_stone_platforms {
+  __typename: "PlatformInfo";
+  /**
+   * The Stone Platform ID of this platform.
+   */
+  platformId: any;
+  /**
+   * The human readable name of this platform.
+   */
+  friendlyName: string;
+  /**
+   * Stone metadata for this platform.
+   */
+  metadata: Platforms_stone_platforms_metadata[] | null;
+}
+
+export interface Platforms_stone {
+  __typename: "StoneQuery";
+  /**
+   * Gets the Stone platform definitions matching the search query.
+   */
+  platforms: Platforms_stone_platforms[];
+}
+
+export interface Platforms {
+  /**
+   * Provides access to Stone platform and controller definitions.
+   */
+  stone: Platforms_stone;
 }
 
 /* tslint:disable */

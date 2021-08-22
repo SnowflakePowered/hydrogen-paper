@@ -62,6 +62,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/webpack-hot-middleware", "npm:2.25.5"],
             ["@yarnpkg/pnpify", "npm:3.0.1"],
             ["apollo", "npm:2.33.6"],
+            ["apollo3-cache-persist", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:0.12.1"],
             ["babel-loader", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:8.2.2"],
             ["babel-plugin-transform-imports", "npm:2.0.0"],
             ["clsx", "npm:1.1.1"],
@@ -11440,6 +11441,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packagePeers": [
             "@types/graphql",
             "graphql"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["apollo3-cache-persist", [
+        ["npm:0.12.1", {
+          "packageLocation": "./.yarn/cache/apollo3-cache-persist-npm-0.12.1-6eb349b767-c5ea93093a.zip/node_modules/apollo3-cache-persist/",
+          "packageDependencies": [
+            ["apollo3-cache-persist", "npm:0.12.1"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:0.12.1", {
+          "packageLocation": "./.yarn/__virtual__/apollo3-cache-persist-virtual-a137ab7077/0/cache/apollo3-cache-persist-npm-0.12.1-6eb349b767-c5ea93093a.zip/node_modules/apollo3-cache-persist/",
+          "packageDependencies": [
+            ["apollo3-cache-persist", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:0.12.1"],
+            ["@apollo/client", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:3.4.8"],
+            ["@types/apollo__client", null]
+          ],
+          "packagePeers": [
+            "@apollo/client",
+            "@types/apollo__client"
           ],
           "linkType": "HARD",
         }]
@@ -29337,6 +29360,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/webpack-hot-middleware", "npm:2.25.5"],
             ["@yarnpkg/pnpify", "npm:3.0.1"],
             ["apollo", "npm:2.33.6"],
+            ["apollo3-cache-persist", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:0.12.1"],
             ["babel-loader", "virtual:677f254955aa12ee4264f8f6d2759637a01efe6a68cd16c9ad0fa4fe294a473908139c83d9d315d00774e4b1d38d283d2a8dba5e43a96c76b956c2957ddad29c#npm:8.2.2"],
             ["babel-plugin-transform-imports", "npm:2.0.0"],
             ["clsx", "npm:1.1.1"],

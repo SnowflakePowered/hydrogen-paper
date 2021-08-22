@@ -6098,6 +6098,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"apollo3-cache-persist@npm:^0.12.1":
+  version: 0.12.1
+  resolution: "apollo3-cache-persist@npm:0.12.1"
+  peerDependencies:
+    "@apollo/client": ^3.2.5
+  checksum: c5ea93093a6c81719a3333323e28e1423c993f60fdb8537f3bd007e807ead68edfc2d7cc9d8721e93c7f4155e7474b95e3b7995c3bd553f4c51f17521950c223
+  languageName: node
+  linkType: hard
+
 "apollo@npm:^2.33.6":
   version: 2.33.6
   resolution: "apollo@npm:2.33.6"
@@ -21442,6 +21451,7 @@ resolve@^2.0.0-next.3:
     "@types/webpack-hot-middleware": ^2.25.5
     "@yarnpkg/pnpify": ^3.0.1
     apollo: ^2.33.6
+    apollo3-cache-persist: ^0.12.1
     babel-loader: ^8.2.2
     babel-plugin-transform-imports: ^2.0.0
     clsx: ^1.1.1

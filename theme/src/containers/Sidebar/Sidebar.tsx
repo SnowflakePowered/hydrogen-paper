@@ -68,6 +68,7 @@ const Sidebar: React.FunctionComponent<ComponentProps>
             className={classes.platformsList}>
             {(platforms ?? []).map(platform =>
               <ListItem button dense
+                key={platform.platformId}
                 onClick={e => onPlatformSelect?.(platform.platformId)}
                 selected={selectedPlatform === platform.platformId}>
                 <ListItemText>

@@ -20,9 +20,10 @@ export const styles = createStyles({
         gridArea: 'ListContainer',
         display: 'grid',
         gridTemplateColumns: '1fr',
-        gridTemplateRows: '3fr 2fr',
-        gridTemplateAreas: `"PlatformsList" 
-                            "CollectionsList"`,
+        gridTemplateRows: '1fr',
+        // gridTemplateAreas: `"PlatformsList" 
+        //                     "CollectionsList"`,
+        gridTemplateAreas: `"PlatformsList"`,
         rowGap: '10px',
     },
     listContainerNoCollection: {
@@ -31,7 +32,7 @@ export const styles = createStyles({
     platformsList: {
         position: 'relative',
         overflow: 'auto',
-        gridArea: 'PlatformsList'
+        gridArea: 'PlatformsList CollectionsList'
     },
     listSubheader: {
         fontWeight: 'bold',
@@ -41,7 +42,8 @@ export const styles = createStyles({
     collectionsList: {
         position: 'relative',
         overflow: 'auto',
-        gridArea: 'CollectionsList'
+        display: 'none'
+        // gridArea: 'CollectionsList'
     },
     sidebarContainer: {
         height: '100%',

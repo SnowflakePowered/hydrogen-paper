@@ -8,6 +8,7 @@ export const styles = createStyles({
     width: '100%',
     display: 'grid',
     gridTemplateColumns: '48px auto 10px',
+    marginRight: '10px',
     alignItems: 'center',
     opacity: 1,
     fontFamily: 'Roboto, sans-serif',
